@@ -8,12 +8,12 @@ Ces supports sont destiné a l'apprentissage personnel (pour n'importe qui, form
 
 Objectifs :
 
-- creer la boutique avec catalogue (((objectif principale)))
+- creer la boutique avec catalogue (((objectif principale))).
     Il y aura un systeme de connexion entre les savoirs (transversalité) qui seront mis en évidance pour aiguiller les apprenants.
     
-- proposer des supports pédago uniques (un exemple représentatifau moins) (((objectif souhaité])))
+- proposer des supports pédago uniques (un exemple représentatifau moins) (((objectif souhaité]))).
     Etre le moins scolaire possible.
 
-- proposer un éditeur de support pédago (((objectif révé)))
+- proposer un éditeur de support pédago (((objectif révé))).
 
-- mini cms catalogue (((objectif révé)))
+- mini cms catalogue (((objectif révé))).
