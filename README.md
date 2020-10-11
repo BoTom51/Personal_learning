@@ -11,7 +11,7 @@ Objectifs :
 - creer la boutique avec catalogue (((objectif principale))).<br>
     Il y aura un systeme de connexion entre les savoirs (transversalité) qui seront mis en évidance pour aiguiller les apprenants.
     
-- proposer des supports pédago uniques (un exemple représentatifau moins) (((objectif souhaité]))).<br>
+- proposer des supports pédago uniques (un exemple représentatif au moins) (((objectif souhaité]))).<br>
     Etre le moins scolaire possible.
 
 - proposer un éditeur de support pédago (((objectif révé))).<br>
