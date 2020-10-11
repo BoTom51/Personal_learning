@@ -1,0 +1,104 @@
+* {
+   box-sizing: border-box;
+   padding: 0%;
+   margin: 0%;
+}
+body {
+   background-color: #ececec;
+   display: flex;
+   flex-direction: column;
+}
+/*//////////////// REGLES GROUPEES ////////////////*/
+.formAccount,
+.block_connexion,
+.block_inscription {
+   border-radius: 50px;
+   transition: height 0.5s ease;
+   overflow: hidden;
+}
+.block_connexion,
+.block_inscription {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+/*//////////////// FORM ////////////////*/
+.formAccount {
+   margin: 20px auto;
+   width: 300px;
+   background-color: #ecf0f3; /*leger fond gris pour faire resortir l'ombre blanche*/
+   box-shadow: #cbced1 13px 13px 15px, #ffffff -13px -13px 20px;
+}
+/*///////// INPUT /////////*/
+label {
+   user-select: none;
+   margin: 5px;
+}
+input[type="text"],
+input[type="password"] {
+   text-align: center;
+   margin: 15px;
+   padding: 10px;
+   background-color: #cacaca4b; /*leger fond gris pour faire resortir l'ombre blanche*/
+   box-shadow: #b4b4b4 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset, #b4b4b4 0.3rem 0.3rem 4rem; /*ombre mettant en valeur l'ombre interne blanche*/
+   border: none;
+   border-radius: 50px;
+}
+input[type="submit"] {
+   margin: 15px;
+}
+div.pswd-voir {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.btn {
+   border: none;
+   padding: 5px 8px;
+   border-radius: 50px;
+   background-color: #cacaca4b;
+   box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset, #b4b4b4 0.3rem 0.3rem 4rem;
+}
+div.btn-voir {
+   user-select: none;
+   position: absolute;
+   right: -20%;
+   top: 49.5%;
+}
+.btn:hover {
+   background-color: #cacacaa4;
+}
+.btn:active {
+   box-shadow: #ffffff 0.3rem 0.3rem 0.5rem inset, #ffffff -0.3rem -0.3rem 0.5rem inset, #b4b4b4 0.3rem 0.3rem 4rem;
+}
+/*///////// BOUTON SWITCH CONNEC/INSCRIP /////////*/
+.inscriptionBtn {
+   margin: 15px auto;
+   text-decoration: underline;
+   user-select: none;
+   text-align: center;
+}
+.inscriptionBtn:hover {
+   color: #58c2ff;
+   cursor: pointer;
+}
+/*///////// PARTIE CONNEXION /////////*/
+h2 {
+   padding: 10px;
+}
+.block_connexion {
+}
+/*///////// PARTIE INSCRIPTION /////////*/
+.block_inscription {
+}
+/*///////// MESSAGES /////////*/
+p {
+   background-color:grey;
+   user-select: none;
+   margin: 2px auto;
+   padding: 10px;
+   height: max-content;
+   border: solid 2px black;
+}
