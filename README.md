@@ -1,4 +1,4 @@
-# Personal_learning
+# Personal_learning (wip...)
 
 Mon projet de formation.
 Faire une boutique basique, avec gestion de compte client (panier, données perso) et catalogue de produit (support pédagogique) d'e-learning.
