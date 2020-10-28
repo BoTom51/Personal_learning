@@ -1,0 +1,1 @@
+<!-- //////////////////// PAGE POUR TOUTE LES RECHERCHES ET LISTES //////////////////// -->
