@@ -17,3 +17,32 @@ Objectifs :
 - proposer un éditeur de support pédago (((objectif révé))).<br>
 
 - mini cms catalogue (((objectif révé))).<br>
+
+
+--------------------------------<br>
+BACKLOG : 
+
+- Barre de recherche avec suggestions (ajax) <br>
+- Formulaire de gestion du contenu et de compte, liste de produits, articles et compte dynamique AJAX (back) <br>
+- Panier / historique achat
+
+
+TO DO :
+
+- Formulaire de gestion du contenu et de compte, liste de produits, articles et compte (back) <br>
+
+
+DOING :
+
+- CSS des composants des pages <br>
+
+
+VERIFY :
+
+-
+
+
+DONE : 
+
+- Formulaire de gestion de compte (front) <br>
+- Structure du site (cheminement pages) <br>
