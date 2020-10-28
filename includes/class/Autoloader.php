@@ -9,7 +9,7 @@ class Autoloader
 
 	static function autoload($class_name)
 	{
-		require $_SERVER['DOCUMENT_ROOT'] . '/test/PROJET_v0.1/includes/class/' . $class_name . '.php';
+		require $_SERVER['DOCUMENT_ROOT'] . '/test/Personal_learning/includes/class/' . $class_name . '.php';
 		//require '../includes/' . $class_name . '.php'; // ----------------------> PROBLEME DE CHEMIN ...
 	}
 }
