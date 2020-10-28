@@ -1,0 +1,15 @@
+/*////////////////// COLONNE CENTRALE //////////////////*/
+@import "./libs/fonctions.scss";
+$h2-font-size: 28px;
+
+.content {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 100%;
+   margin: rem(15) 0;
+
+   h2 {
+      font-size: $h2-font-size;
+   }
+}

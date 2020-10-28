@@ -1,0 +1,100 @@
+@import "./libs/fonctions.scss";
+
+header {
+   border: black solid;
+   width: 100%;
+   margin-bottom: rem(5);
+   user-select: none;position: relative;
+
+   /////////////// BANNIERE / LOGO ///////////////
+   h1 {
+      border: blue solid;
+      text-align: center;
+      margin-bottom: rem(5);
+   }
+
+   /////////////// BARRE DE NAVIGATION ///////////////
+   // STICKY + HAMBURGER
+   nav {
+      border: green solid;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+
+      ul {
+         list-style: none;
+         display: flex;
+         justify-content: center;
+         height: rem(50);
+
+         li {
+            display: flex;
+         }
+         /////////////// INTERFACE NAVIGATION ///////////////
+         &.ui_nav {
+            background-color: #cacaca4b;
+
+            a {
+               display: flex;
+               align-items: center;
+               text-decoration: none;
+               padding: 0 rem(15);
+               color: initial; //--------------------------------------------
+               height: 100%;
+               border-bottom: solid #cacaca00 3px;
+
+               &:hover {
+                  border-bottom: solid gray 3px;
+               }
+               &:active {
+                  border-bottom: solid gray 3px;
+                  //pointer-events: none; //---------------------------------------------------
+               }
+            }
+         }
+         /////////////// INTERFACE RECHERCHE ///////////////
+         &.ui_search {
+            background-color: #cacaca4b;
+         }
+         /////////////// INTERFACE DE COMPTE ///////////////
+         &.ui_account {
+            li.btn_account {
+               align-items: initial;
+
+               a {
+                  background-color: #cacaca4b;
+                  box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  padding: rem(5);
+                  padding-left: rem(5);
+                  width: rem(70);
+
+                  &:active {
+                     background-color: #e7e7e74b;
+                     box-shadow: #eeeeee 0.3rem 0.3rem 0.3rem inset, #eeeeee -0.3rem -0.3rem 0.3rem inset;
+                     //pointer-events: none; //---------------------------------------------------
+                  }
+                  &.btn_disconnect {
+                     // border-right: black solid 1px;
+                     padding-right: rem(5);
+                     * {
+                        height: 100%;
+                     }
+                     img.icon_disconnect {
+                        width: rem(40);
+                     }
+                  }
+                  &.btn_connect {
+                     width: 100%;
+                     .icon_connect {
+                        width: rem(40);
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}

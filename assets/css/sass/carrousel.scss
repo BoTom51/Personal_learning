@@ -1,0 +1,111 @@
+@import "./libs/fonctions.scss";
+$dimCarousel: 90vw;
+$dimSlides: 700%;
+
+/*/////////////// CARROUSEL ///////////////*/
+.carousel,
+.carousel .slides,
+.carousel .slides a.slide,
+.carousel .slides a.slide * {
+   position: relative;
+}
+.carousel {
+   overflow: hidden;
+   /*-------- dim/placement ---------*/
+   margin: auto;
+   margin-top: 2vh;
+   margin-bottom: 5vh;
+   width: $dimCarousel;
+   max-width: 1024px;
+   /*--------- cosmetique ---------*/
+   box-shadow: black 0px 0px 10px;
+
+   /*////// ELEMENTS A AFFICHER (SLIDES) //////*/
+   .slides {
+      display: flex;
+      width: $dimSlides;
+      transition: left 0.4s ease-out; /*animation*/
+
+      a.slide * {
+         display: block;
+         width: 100%;
+
+         &:hover {
+            opacity: 0.9;
+         }
+      }
+   }
+
+   /*////// BOUTTONS SUIVANT/PRECEDENT //////*/
+   .fleche {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      height: 100%;
+      top:0px;
+      /*--------- cosmetique ---------*/
+      text-align: center;
+      user-select: none;
+      font-size: em(35);
+      color: #ffffff75;
+
+      &.droite {
+         right: 0px;
+      }
+      &.gauche {
+         left: 0px;
+      }
+
+      &:hover {
+         /*--------- cosmetique ---------*/
+         opacity: 0.6;
+         cursor: pointer;
+      }
+   }
+
+   /*////// INDICATEURS DES IMAGES AFFICHES //////*/
+   .indicators {
+      display: flex; /*les pastilles seront responsive et alignable facilement*/
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      z-index: 5;
+      width: 100%;
+      bottom: rem(15);
+      transition: opacity 1s ease; /*ajout opacity -> JS*/
+
+      span {
+         /*--------- cosmetique ---------*/
+         width: 15px;
+         height: 15px;
+         margin: 0px 1px;
+         border: solid 1px #ffffff9f;
+         background-color: #808080c0;
+         border-radius: 50%;
+      }
+
+      /*---- class JS ----*/
+      .indicatorCourant,
+      span:hover {
+         /*--------- cosmetique ---------*/
+         border: solid 1px #ffffff9f;
+         background-color: #000000;
+      }
+   }
+
+   /*////// NOM/COMM DES IMAGES AFFICHES //////*/
+   .legende {
+      position: absolute;
+      z-index: 5;
+      margin: auto;
+      bottom: 45px;
+      width: 100%;
+      font-weight: 900;
+      text-align: center;
+      /*--------- cosmetique ---------*/
+      background-color: #808080c0;
+      border: solid 1px #ffffff9f;
+      border-radius: 5px;
+      transition: opacity 1s ease; /*ajout opacity -> JS*/
+   }
+}
