@@ -1,0 +1,41 @@
+.list.horizontal {
+  width: 90vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  max-width: 1024px;
+  margin-top: 2vh;
+  margin-bottom: 5vh;
+}
+.list .card {
+  display: flex;
+  width: 20%;
+  margin: 0px 0.3125rem;
+  box-shadow: black 0px 0px 0.25rem;
+}
+.list .card a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: initial;
+}
+.list .card a:hover {
+  opacity: 0.9;
+}
+.list .card a img {
+  width: 100%;
+}
+.list .card a h3 {
+  padding: 0.1875rem;
+}
+.list .card a .describ {
+  padding: 0.1875rem;
+  text-align: center;
+}
+.list .card a .describ strong {
+  color: #2c47be;
+}
+
+/*# sourceMappingURL=list.css.map */

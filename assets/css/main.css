@@ -1,0 +1,13 @@
+/*////////////////// COLONNE CENTRALE //////////////////*/
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0.9375rem 0;
+}
+.content h2 {
+  font-size: 28px;
+}
+
+/*# sourceMappingURL=main.css.map */

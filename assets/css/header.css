@@ -1,0 +1,82 @@
+header {
+  border: black solid;
+  width: 100%;
+  margin-bottom: 0.3125rem;
+  user-select: none;
+  position: relative;
+}
+header h1 {
+  border: blue solid;
+  text-align: center;
+  margin-bottom: 0.3125rem;
+}
+header nav {
+  border: green solid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+header nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  height: 3.125rem;
+}
+header nav ul li {
+  display: flex;
+}
+header nav ul.ui_nav {
+  background-color: #cacaca4b;
+}
+header nav ul.ui_nav a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 0.9375rem;
+  color: initial;
+  height: 100%;
+  border-bottom: solid #cacaca00 3px;
+}
+header nav ul.ui_nav a:hover {
+  border-bottom: solid gray 3px;
+}
+header nav ul.ui_nav a:active {
+  border-bottom: solid gray 3px;
+}
+header nav ul.ui_search {
+  background-color: #cacaca4b;
+}
+header nav ul.ui_account li.btn_account {
+  align-items: initial;
+}
+header nav ul.ui_account li.btn_account a {
+  background-color: #cacaca4b;
+  box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3125rem;
+  padding-left: 0.3125rem;
+  width: 4.375rem;
+}
+header nav ul.ui_account li.btn_account a:active {
+  background-color: #e7e7e74b;
+  box-shadow: #eeeeee 0.3rem 0.3rem 0.3rem inset, #eeeeee -0.3rem -0.3rem 0.3rem inset;
+}
+header nav ul.ui_account li.btn_account a.btn_disconnect {
+  padding-right: 0.3125rem;
+}
+header nav ul.ui_account li.btn_account a.btn_disconnect * {
+  height: 100%;
+}
+header nav ul.ui_account li.btn_account a.btn_disconnect img.icon_disconnect {
+  width: 2.5rem;
+}
+header nav ul.ui_account li.btn_account a.btn_connect {
+  width: 100%;
+}
+header nav ul.ui_account li.btn_account a.btn_connect .icon_connect {
+  width: 2.5rem;
+}
+
+/*# sourceMappingURL=header.css.map */
