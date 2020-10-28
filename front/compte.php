@@ -1,4 +1,5 @@
 <?php  //////////// INCLUDES ////////////
+require_once '../config.php';
 require_once '../includes/class/Autoloader.php';
 Autoloader::register(); //charge automatiquement tous les fichers de class a leur appel
 require_once '../includes/session.php';
@@ -6,16 +7,19 @@ require_once '../includes/session.php';
 <!--//////////// HTML ////////////-->
 <!DOCTYPE html>
 <html lang="fr">
-
-<head>
+<!-- //////////////////////////////////// HEAD //////////////////////////////////// -->
+<?php require_once ROOT_SITE . './includes/head.php'; ?>
+<!-- <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Gestion de compte</title>
-	<!-- CSS -->
+	
 	<link rel="stylesheet" href="../assets/css/test.css">
-</head>
+</head> -->
 
 <body>
+	<!-- //////////////////////////////////// HEADER //////////////////////////////////// -->
+	<?php require_once ROOT_SITE . './includes/header.php'; ?>
 	<?php
 	go_connect(); // SI pas connecté ...
 	$pdo = new Database();

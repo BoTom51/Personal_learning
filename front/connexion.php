@@ -1,4 +1,5 @@
 <?php  //////////// INCLUDES ////////////
+require_once '../config.php';
 require_once '../includes/class/Autoloader.php';
 Autoloader::register(); //charge automatiquement tous les fichers de class a leur appel
 require_once '../includes/session.php';
@@ -13,20 +14,24 @@ if (be_connect()) {
 
 // echo '<pre>'; var_dump($_SESSION); echo '</pre><<< SESSION >>>'; //-----------------
 ?>
-<!-- //////////////////////////////////////////////////////////// HEAD //////////////////////////////////////////////////////////// -->
 <!DOCTYPE html>
 <html lang="fr">
+<!-- //////////////////////////////////// HEAD //////////////////////////////////// -->
+<?php require_once ROOT_SITE . './includes/head.php'; ?>
 
-<head>
+<!-- <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Connexion</title>
-	<!-- CSS -->
 	<link rel="stylesheet" href="../assets/css/test.css">
-</head>
+</head> -->
 <!-- //////////////////////////////////////////////////////////// BODY //////////////////////////////////////////////////////////// -->
 <body>
-	<a href="../">Accueil</a>
+<?php require_once ROOT_SITE . './includes/header.php'; ?>
+	
+
+<a href="../">Accueil</a>
+	
 	<main id="conteneur" class="conteneur">
 	
 		<!-- //////////// FORM CONNEXION //////////// -->

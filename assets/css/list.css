@@ -1,4 +1,4 @@
-.list.horizontal {
+.list.list_horizontal {
   width: 90vw;
   display: flex;
   flex-wrap: wrap;
@@ -7,34 +7,37 @@
   max-width: 1024px;
   margin-top: 2vh;
   margin-bottom: 5vh;
+  font-size: 12px;
 }
 .list .card {
   display: flex;
-  width: 20%;
-  margin: 0px 0.3125rem;
+  width: 13.75rem;
+  margin: 0.625rem;
   box-shadow: black 0px 0px 0.25rem;
 }
-.list .card a {
+.list .card.card_vertical .lien_recomm {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-decoration: none;
   color: initial;
-}
-.list .card a:hover {
-  opacity: 0.9;
-}
-.list .card a img {
   width: 100%;
 }
-.list .card a h3 {
+.list .card.card_vertical .lien_recomm:hover {
+  opacity: 0.9;
+}
+.list .card.card_vertical .lien_recomm img {
+  width: 100%;
+}
+.list .card.card_vertical .lien_recomm h3 {
+  text-align: center;
   padding: 0.1875rem;
 }
-.list .card a .describ {
+.list .card.card_vertical .lien_recomm .describ {
   padding: 0.1875rem;
   text-align: center;
 }
-.list .card a .describ strong {
+.list .card.card_vertical .lien_recomm .describ strong {
   color: #2c47be;
 }
 

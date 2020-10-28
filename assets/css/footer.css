@@ -1,5 +1,78 @@
-/*////////////////// SOUS MENU //////////////////*/
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: #363636;
+  box-shadow: #00000071 0px -4px 5px;
+  font-weight: bolder;
+  text-shadow: #ffffff86 0px 0px 2px;
+  /*////////////////// MENU //////////////////*/
+  /*////////////////// SOCIAL / COPYRIGHT //////////////////*/
+}
+footer h4 {
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 0.3125rem;
+  width: 80%;
+  margin-bottom: 0.3125rem;
+  text-align: center;
+  border-bottom: 1px solid #ffffff1a;
+}
+footer a,
+footer address,
+footer span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  text-align: center;
+  color: initial;
+}
+footer ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+footer ul li {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.3125rem;
+}
+footer img {
+  width: 1.875rem;
+}
+footer .menu,
+footer .account,
+footer .coordo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+}
+footer .coordo {
+  width: 50%;
+}
+footer .coordo li * {
+  margin: 0.3125rem;
+}
+footer .social,
+footer .copyright {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0.3125rem;
+  border-top: 1px solid #ffffff1a;
+}
+footer .social a {
+  margin: 0.375rem;
+}
+footer .social h4 {
+  display: flex;
+  align-items: center;
+  margin: initial;
+  border: initial;
+  width: initial;
+}
 
-/*////////////////// SOCIAUX //////////////////*/
-
-/*////////////////// COPYRIGHT //////////////////*/
+/*# sourceMappingURL=footer.css.map */

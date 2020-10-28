@@ -15,7 +15,7 @@
   width: 90vw;
   max-width: 1024px;
   /*--------- cosmetique ---------*/
-  box-shadow: black 0px 0px 10px;
+  box-shadow: #000000be 0px 0px 0.3125rem;
   /*////// ELEMENTS A AFFICHER (SLIDES) //////*/
   /*////// BOUTTONS SUIVANT/PRECEDENT //////*/
   /*////// INDICATEURS DES IMAGES AFFICHES //////*/

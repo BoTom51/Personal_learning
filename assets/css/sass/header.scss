@@ -1,14 +1,16 @@
 @import "./libs/fonctions.scss";
 
 header {
-   border: black solid;
+   // border: black solid;
    width: 100%;
    margin-bottom: rem(5);
-   user-select: none;position: relative;
+   user-select: none;  
+   position: relative;
+   background-color: #363636;
 
    /////////////// BANNIERE / LOGO ///////////////
    h1 {
-      border: blue solid;
+      // border: blue solid;
       text-align: center;
       margin-bottom: rem(5);
    }
@@ -16,16 +18,19 @@ header {
    /////////////// BARRE DE NAVIGATION ///////////////
    // STICKY + HAMBURGER
    nav {
-      border: green solid;
+      // border: green solid;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-evenly;
+      box-shadow: #00000071 0px 4px 5px;
 
       ul {
          list-style: none;
          display: flex;
          justify-content: center;
+         align-items: center; //----------------------> attention
          height: rem(50);
+         border-radius: 5px;
 
          li {
             display: flex;
@@ -42,6 +47,7 @@ header {
                color: initial; //--------------------------------------------
                height: 100%;
                border-bottom: solid #cacaca00 3px;
+               transition: border 0.3s;
 
                &:hover {
                   border-bottom: solid gray 3px;
@@ -60,7 +66,7 @@ header {
          &.ui_account {
             li.btn_account {
                align-items: initial;
-
+               
                a {
                   background-color: #cacaca4b;
                   box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset;
@@ -69,7 +75,9 @@ header {
                   justify-content: center;
                   padding: rem(5);
                   padding-left: rem(5);
-                  width: rem(70);
+                  width: rem(70); 
+                  border-top-right-radius: 5px;
+                  border-bottom-right-radius: 5px;
 
                   &:active {
                      background-color: #e7e7e74b;
@@ -79,6 +87,10 @@ header {
                   &.btn_disconnect {
                      // border-right: black solid 1px;
                      padding-right: rem(5);
+                     border-radius: 0px;
+                     border-top-left-radius: 5px;
+                     border-bottom-left-radius: 5px;
+
                      * {
                         height: 100%;
                      }

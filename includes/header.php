@@ -19,13 +19,13 @@
             <ul class="ui_account">
                <?php if (be_connect()) : ?>
                <li class="btn_account">
-                  <a class="btn_disconnect" href="./includes/session_close.php"><img class="icon_disconnect" title="Déconnexion" src="./assets/img/disconnect.png" alt="Déconnexion" /></a>
+                  <a class="btn_disconnect" href="./includes/session_close.php"><img class="icon_disconnect" title="Déconnexion" src="./assets/icon/disconnect.png" alt="Déconnexion" /></a>
                   <a href="./front/compte.php">Compte</a>
                </li>
                <?php else : ?>
                <li class="btn_account">
                   <a class="btn_connect" href="./front/connexion.php">
-                     <img class="icon_connect" title="Connexion" src="./assets/img/connect.png" alt="login" />
+                     <img class="icon_connect" title="Connexion" src="./assets/icon/connect.png" alt="login" />
                      Connexion
                   </a>
                </li>

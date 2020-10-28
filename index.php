@@ -9,19 +9,10 @@ if (session_status() === PHP_SESSION_NONE) session_start(); // Ouvre la session 
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+<!-- //////////////////////////////////// HEAD //////////////////////////////////// -->
+<?php require_once './includes/head.php'; ?>
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Accueil</title>
-	<link rel="stylesheet" href="./assets/css/document.css" />
-	<link rel="stylesheet" href="./assets/css/header.css">
-	<link rel="stylesheet" href="./assets/css/main.css">
-	<link rel="stylesheet" href="./assets/css/footer.css">
-	<link rel="stylesheet" href="./assets/css/carrousel.css" />
-	<link rel="stylesheet" href="./assets/css/list.css" />
-</head>
-
+<!-- //////////////////////////////////// BODY //////////////////////////////////// -->
 <body>
 	<!-- //////////////////////////////////// HEADER //////////////////////////////////// -->
 	<?php require_once './includes/header.php'; ?>
@@ -88,13 +79,13 @@ if (session_status() === PHP_SESSION_NONE) session_start(); // Ouvre la session 
 		<?php if (be_connect()) : ?>
 			<h2>Recommandations</h2>
 			
-			<list class="list horizontal">
+			<list class="list list_horizontal">
 				<?php for ($i = 0; $i < count($res); $i++) : ?>
-					<card class="card">
-						<a href="./front/fiche.php?id=<?= utf8_encode($res[$i]['Id']); ?>">
+					<card class="card card_vertical">
+						<a class="lien_recomm" href="./front/fiche.php?id=<?= utf8_encode($res[$i]['Id']); ?>">
 							<img src="./assets/img/<?= utf8_encode($res[$i]['Picture']); ?>.jpg" alt="<?= utf8_encode($res[$i]['Title']); ?>">
 							<h3><?= utf8_encode($res[$i]['Title']); ?></h3>
-							<describ class="describ"><?= utf8_encode(substr($res[$i]['Content'], 0, 180)) . '...'; ?></describ>
+							<describ class="describ"><?= utf8_encode(substr($res[$i]['Content'], 0, 180)) . ' ...'; ?></describ>
 						</a>
 					</card>
 				<?php endfor; ?>

@@ -1,26 +1,27 @@
 header {
-  border: black solid;
   width: 100%;
   margin-bottom: 0.3125rem;
   user-select: none;
   position: relative;
+  background-color: #363636;
 }
 header h1 {
-  border: blue solid;
   text-align: center;
   margin-bottom: 0.3125rem;
 }
 header nav {
-  border: green solid;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  box-shadow: #00000071 0px 4px 5px;
 }
 header nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 3.125rem;
+  border-radius: 5px;
 }
 header nav ul li {
   display: flex;
@@ -36,6 +37,7 @@ header nav ul.ui_nav a {
   color: initial;
   height: 100%;
   border-bottom: solid #cacaca00 3px;
+  transition: border 0.3s;
 }
 header nav ul.ui_nav a:hover {
   border-bottom: solid gray 3px;
@@ -58,6 +60,8 @@ header nav ul.ui_account li.btn_account a {
   padding: 0.3125rem;
   padding-left: 0.3125rem;
   width: 4.375rem;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 header nav ul.ui_account li.btn_account a:active {
   background-color: #e7e7e74b;
@@ -65,6 +69,9 @@ header nav ul.ui_account li.btn_account a:active {
 }
 header nav ul.ui_account li.btn_account a.btn_disconnect {
   padding-right: 0.3125rem;
+  border-radius: 0px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 header nav ul.ui_account li.btn_account a.btn_disconnect * {
   height: 100%;
