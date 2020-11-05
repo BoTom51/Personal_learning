@@ -1,16 +1,14 @@
 @import "./libs/fonctions.scss";
 
 header {
-   // border: black solid;
    width: 100%;
    margin-bottom: rem(5);
-   user-select: none;  
+   user-select: none;
    position: relative;
    background-color: #363636;
 
    /////////////// BANNIERE / LOGO ///////////////
    h1 {
-      // border: blue solid;
       text-align: center;
       margin-bottom: rem(5);
    }
@@ -18,7 +16,6 @@ header {
    /////////////// BARRE DE NAVIGATION ///////////////
    // STICKY + HAMBURGER
    nav {
-      // border: green solid;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-evenly;
@@ -27,13 +24,16 @@ header {
       ul {
          list-style: none;
          display: flex;
+         flex-wrap: wrap;
          justify-content: center;
          align-items: center; //----------------------> attention
-         height: rem(50);
+
          border-radius: 5px;
 
          li {
             display: flex;
+            align-items: center;
+            height: rem(50);
          }
          /////////////// INTERFACE NAVIGATION ///////////////
          &.ui_nav {
@@ -49,12 +49,17 @@ header {
                border-bottom: solid #cacaca00 3px;
                transition: border 0.3s;
 
+               &.current_page {
+                  pointer-events: none;
+                  color: #ffffff;
+                  border-bottom: solid gray 3px;
+               }
+
                &:hover {
                   border-bottom: solid gray 3px;
                }
                &:active {
                   border-bottom: solid gray 3px;
-                  //pointer-events: none; //---------------------------------------------------
                }
             }
          }
@@ -66,7 +71,7 @@ header {
          &.ui_account {
             li.btn_account {
                align-items: initial;
-               
+
                a {
                   background-color: #cacaca4b;
                   box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset;
@@ -75,7 +80,7 @@ header {
                   justify-content: center;
                   padding: rem(5);
                   padding-left: rem(5);
-                  width: rem(70); 
+                  width: rem(70);
                   border-top-right-radius: 5px;
                   border-bottom-right-radius: 5px;
 
@@ -100,6 +105,7 @@ header {
                   }
                   &.btn_connect {
                      width: 100%;
+                     border-radius: 5px;
                      .icon_connect {
                         width: rem(40);
                      }

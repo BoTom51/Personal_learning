@@ -1,44 +1,95 @@
-.list.list_horizontal {
+.list {
   width: 90vw;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   margin: auto;
   max-width: 1024px;
   margin-top: 2vh;
   margin-bottom: 5vh;
   font-size: 12px;
 }
+.list.list_mosaic {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.list.list_column {
+  flex-direction: column;
+  align-items: center;
+}
 .list .card {
   display: flex;
-  width: 13.75rem;
   margin: 0.625rem;
   box-shadow: black 0px 0px 0.25rem;
 }
-.list .card.card_vertical .lien_recomm {
+.list .card .lien_recomm {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   text-decoration: none;
   color: initial;
   width: 100%;
 }
-.list .card.card_vertical .lien_recomm:hover {
-  opacity: 0.9;
+.list .card .lien_recomm .block_info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-between;
+  height: 100%;
 }
-.list .card.card_vertical .lien_recomm img {
+.list .card .lien_recomm .block_info h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  padding: 0.1875rem;
+}
+.list .card .lien_recomm .block_info .describ {
+  text-align: center;
+  width: 100%;
+  padding: 0.1875rem;
+}
+.list .card .lien_recomm .block_info .describ strong {
+  display: inline;
+  color: #2c47be;
+}
+.list .card .lien_recomm .block_info .category, .list .card .lien_recomm .block_info .sub_category, .list .card .lien_recomm .block_info .formation, .list .card .lien_recomm .block_info .niveau, .list .card .lien_recomm .block_info .article_date, .list .card .lien_recomm .block_info .product_price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  margin: 0.1875rem;
+  padding: 0.25rem;
+  background-color: #333333;
+  color: #c2c2c2;
+  border-radius: 3px;
+}
+.list .card .lien_recomm .block_info .product_price {
+  width: 100%;
+  color: #ff5c5c;
+  font-size: 12px;
+}
+.list .card.card_mosaic {
+  width: 13.75rem;
+}
+.list .card.card_mosaic .lien_recomm {
+  flex-direction: column;
+  align-items: center;
+}
+.list .card.card_mosaic .lien_recomm img {
   width: 100%;
 }
-.list .card.card_vertical .lien_recomm h3 {
-  text-align: center;
-  padding: 0.1875rem;
+.list .card.card_inline {
+  width: 100%;
 }
-.list .card.card_vertical .lien_recomm .describ {
-  padding: 0.1875rem;
-  text-align: center;
+.list .card.card_inline .lien_recomm {
+  align-items: center;
 }
-.list .card.card_vertical .lien_recomm .describ strong {
-  color: #2c47be;
+.list .card.card_inline .lien_recomm img {
+  width: 33%;
+}
+.list .card.card_inline .lien_recomm .block_info {
+  width: 66%;
+}
+.list .card:hover {
+  opacity: 0.9;
 }
 
 /*# sourceMappingURL=list.css.map */

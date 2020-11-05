@@ -16,7 +16,7 @@ function who_connect()
 function go_connect()
 {
 	if (be_connect() === false) {
-		header('Location: ./connexion.php');
+		header('Location: ' . ROOT_URL . '/front/connexion.php');
 		exit();
 	}
 }

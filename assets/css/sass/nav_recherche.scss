@@ -1,0 +1,125 @@
+/////////////////////////////////////////////////////////////////////////////////////////
+// Differencier visuellement les boutons de types de listes quand ils sont activé ou non
+/////////////////////////////////////////////////////////////////////////////////////////
+@import "./libs/fonctions.scss";
+
+//////////// L'INTERFACE DE RECHERCHE pour les pages ARTICLES/COURS/EXERCICIES ////////////
+nav.recherche {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 100%;
+   margin: rem(10);
+
+   //////////// LE FORMULAIRE DE RECHERCHE ////////////
+   .formSearch {
+      border-radius: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      @media screen and (max-width: 700px) {
+         margin-bottom: rem(10);
+      }
+
+      input[type="text"] {
+         text-align: center;
+         margin: rem(5);
+         padding: rem(10);
+         background-color: #cacaca4b;
+         box-shadow: #b4b4b4 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset, #b4b4b4 0.3rem 0.3rem 4rem;
+         border: none;
+         border-radius: 50px;
+      }
+      input[type="submit"] {
+         margin: rem(5);
+      }
+      .btn {
+         border: none;
+         padding: rem(5) rem(8);
+         border-radius: 50px;
+         background-color: #cacaca4b;
+         box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset, #b4b4b4 0.3rem 0.3rem 4rem;
+
+         &:hover {
+            background-color: #cacacaa4;
+         }
+         &:active {
+            box-shadow: #ffffff 0.3rem 0.3rem 0.5rem inset, #ffffff -0.3rem -0.3rem 0.5rem inset, #b4b4b4 0.3rem 0.3rem 4rem;
+         }
+      }
+   }
+
+   //////////// STYLE DE LISTE ////////////
+   .interface_mode {
+      display: flex;
+      justify-content: center;
+      margin: rem(10);
+
+      @media screen and (max-width: 700px) {
+         display: none;
+      }
+
+      .alignMosaic,
+      .alignColumn {
+         padding: rem(5);
+         margin: rem(5);
+         height: rem(30);
+         border: none;
+         border-radius: 5px;
+         box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset, #b4b4b4 0.3rem 0.3rem 4rem;
+
+         &.active {
+            box-shadow: #b4b4b4 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset, #b4b4b4 0.3rem 0.3rem 4rem;
+         }
+      }
+   }
+
+   //////////// LES FILTRES DE RECHERCHE ////////////
+   .filters {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: rem(10);
+      width: 95%;
+      border-top: solid black 1px;
+
+      li {
+         display: flex;
+         align-items: center;
+         margin: rem(5);
+
+         label {
+            user-select: none;
+            padding: 0 rem(15);
+            border: none;
+            border-radius: 5px;
+            background-color: #ffa6a6;
+            box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset, #b4b4b4 0.3rem 0.3rem 4rem;
+         }
+
+         .filter_category:checked + label {
+            background-color: #c9fcb1;
+            box-shadow: #b4b4b4 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset, #b4b4b4 0.3rem 0.3rem 4rem;
+         }
+         .filter_category {
+            display: none;
+         }
+      }
+   }
+
+   .pages {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      margin: rem(3);
+      padding: rem(4);
+      border-radius: 3px;
+
+      .active {
+         background-color: #49a7ff;
+      }
+   }
+}

@@ -1,3 +1,7 @@
+//////////////////////////////////////////////////////////////////////////
+// rendre les boutons plus visible sur les img clair
+// clickable uniquement sur le caractere (une div supp pour le carac)
+//////////////////////////////////////////////////////////////////////////
 @import "./libs/fonctions.scss";
 $dimCarousel: 90vw;
 $dimSlides: 700%;
@@ -37,17 +41,12 @@ $dimSlides: 700%;
    }
 
    /*////// BOUTTONS SUIVANT/PRECEDENT //////*/
-   .fleche {
+   .zonefleche {
       display: flex;
       align-items: center;
       position: absolute;
       height: 100%;
-      top:0px;
-      /*--------- cosmetique ---------*/
-      text-align: center;
-      user-select: none;
-      font-size: em(35);
-      color: #ffffff75;
+      top: 0px;
 
       &.droite {
          right: 0px;
@@ -55,11 +54,17 @@ $dimSlides: 700%;
       &.gauche {
          left: 0px;
       }
+      .fleche {
+         text-align: center;
+         user-select: none;
+         font-size: rem(35);
+         color: #ffffffb6;
+         text-shadow: #000000be rem(0) rem(0) rem(5);
 
-      &:hover {
-         /*--------- cosmetique ---------*/
-         opacity: 0.6;
-         cursor: pointer;
+         &:hover {
+            opacity: 0.6;
+            cursor: pointer;
+         }
       }
    }
 

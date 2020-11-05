@@ -34,26 +34,27 @@
 .carousel .slides a.slide *:hover {
   opacity: 0.9;
 }
-.carousel .fleche {
+.carousel .zonefleche {
   display: flex;
   align-items: center;
   position: absolute;
   height: 100%;
   top: 0px;
-  /*--------- cosmetique ---------*/
-  text-align: center;
-  user-select: none;
-  font-size: 2.1875em;
-  color: #ffffff75;
 }
-.carousel .fleche.droite {
+.carousel .zonefleche.droite {
   right: 0px;
 }
-.carousel .fleche.gauche {
+.carousel .zonefleche.gauche {
   left: 0px;
 }
-.carousel .fleche:hover {
-  /*--------- cosmetique ---------*/
+.carousel .zonefleche .fleche {
+  text-align: center;
+  user-select: none;
+  font-size: 2.1875rem;
+  color: #ffffffb6;
+  text-shadow: #000000be 0rem 0rem 0.3125rem;
+}
+.carousel .zonefleche .fleche:hover {
   opacity: 0.6;
   cursor: pointer;
 }

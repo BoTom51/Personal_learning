@@ -88,7 +88,7 @@ div.btn-voir {
 /*///////// BOUTON SWITCH CONNEC/INSCRIP /////////*/
 .inscriptionBtn {
    display: block; /*si l'element concerné est inline par defaut*/
-   margin: 15px auto;
+   margin: rem(15) auto;
    text-decoration: underline;
    user-select: none;
    text-align: center;

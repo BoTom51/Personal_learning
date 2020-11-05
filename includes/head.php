@@ -16,15 +16,25 @@
 	<title><?= $arboSite[basename($_SERVER["PHP_SELF"], '.php')]; ?></title>
 
 	<!-- LINKS CSS -->
-	<link rel="stylesheet" href="./assets/css/document.css" />
-	<link rel="stylesheet" href="./assets/css/header.css">
-	<link rel="stylesheet" href="./assets/css/main.css">
+	<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/document.css" />
+	<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/header.css" />
 
-	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "index") : ?>
-		<link rel="stylesheet" href="./assets/css/carrousel.css" />
-		<link rel="stylesheet" href="./assets/css/list.css" />
+	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "index" || basename($_SERVER["PHP_SELF"], '.php') === "recherche") : ?>
+		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/main.css" />
+		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/list.css" />
 	<?php endif; ?>
 
-	<link rel="stylesheet" href="./assets/css/footer.css">
+	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "index") : ?>
+		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/carrousel.css" />
+	<?php endif; ?>
 
+	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "recherche") : ?>
+		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/nav_recherche.css" />
+	<?php endif; ?>
+
+	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "connexion" || basename($_SERVER["PHP_SELF"], '.php') === "compte" || basename($_SERVER["PHP_SELF"], '.php') === "back") : ?>
+		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/form_account.css" />
+	<?php endif; ?>
+
+	<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/footer.css" />
 </head>

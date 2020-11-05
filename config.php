@@ -5,14 +5,9 @@ define( "DB_USERNAME", "root" );
 define( "DB_PASSWORD", "" );
 define( "ADMIN_USERNAME", "admin" );
 define( "ADMIN_PASSWORD", "admin" );
-define("HOMEPAGE_NUM_ARTICLES", 4);
-define("HOMEPAGE_NUM_PRODUCTS", 6);
-define("HOMEPAGE_NUM_RECOM", 4);
+define("HOMEPAGE_NUM_ARTICLES", 8);
+define("HOMEPAGE_NUM_PRODUCTS", 10);
+define("HOMEPAGE_NUM_RECOM", 6);
 
-define( 'ROOT_SITE', realpath(""));
-var_dump(ROOT_SITE);
-var_dump($_SERVER['DOCUMENT_ROOT']);
-
-
-// monter de niveau pour trouver la racine du site et on ajoute le chemin vers le fichier cible
-
+define("SERVEUR_ROOT", dirname(__FILE__)); // racine des dossiers: include/require
+define("ROOT_URL", substr($_SERVER['PHP_SELF'], 0, - (strlen($_SERVER['SCRIPT_FILENAME']) - strlen(SERVEUR_ROOT)))); // racine du site (lien url: href/src)

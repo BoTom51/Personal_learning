@@ -18,13 +18,15 @@ header nav {
 header nav ul {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 3.125rem;
   border-radius: 5px;
 }
 header nav ul li {
   display: flex;
+  align-items: center;
+  height: 3.125rem;
 }
 header nav ul.ui_nav {
   background-color: #cacaca4b;
@@ -38,6 +40,11 @@ header nav ul.ui_nav a {
   height: 100%;
   border-bottom: solid #cacaca00 3px;
   transition: border 0.3s;
+}
+header nav ul.ui_nav a.current_page {
+  pointer-events: none;
+  color: #ffffff;
+  border-bottom: solid gray 3px;
 }
 header nav ul.ui_nav a:hover {
   border-bottom: solid gray 3px;
@@ -81,6 +88,7 @@ header nav ul.ui_account li.btn_account a.btn_disconnect img.icon_disconnect {
 }
 header nav ul.ui_account li.btn_account a.btn_connect {
   width: 100%;
+  border-radius: 5px;
 }
 header nav ul.ui_account li.btn_account a.btn_connect .icon_connect {
   width: 2.5rem;

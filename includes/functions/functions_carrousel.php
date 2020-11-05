@@ -6,6 +6,7 @@ function getCarrouselImg($database, $dbTable, $nbImg)
    $prep_sql->bindValue('limit', $nbImg, PDO::PARAM_INT);
 	$database->myExecute($prep_sql, array());
 	$res = $prep_sql->fetchAll();
+	// echo '<pre>';var_dump($res);echo '</pre><<< RES >>><br>'; //--------------------
 	$prep_sql = null;
    return $res;
 }

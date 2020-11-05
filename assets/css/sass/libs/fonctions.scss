@@ -2,19 +2,15 @@ $base-font-size: 16px !default;
 
 // SUPPRIME l'unité de la variable pour pouvoir la manipuler aprés avec d'autres fonctions
 @function strip-unit($number) {
-	@if type-of($number) == 'number' and not unitless($number) {
-	  @return $number / ($number * 0 + 1);
-	}
- 
-	@return $number;
- }
+   @if type-of($number) == "number" and not unitless($number) {
+      @return $number / ($number * 0 + 1);
+   }
+
+   @return $number;
+}
 
 // CONVERTIT les PIXELS en REM ou EM
 // permet d'avoir de toujour compter en px qui est le plus représentatif et d'avoir l'adaption des rem/em
 @function rem($size, $base: $base-font-size) {
-	@return 1rem * $size / strip-unit($base)
-}
-
-@function em($size, $base: $base-font-size) {
-	@return 1em * $size / strip-unit($base)
+   @return 1rem * $size / strip-unit($base);
 }

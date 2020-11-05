@@ -26,14 +26,12 @@ class Form_account
 		// echo '<pre>'; var_dump($this->inputs); echo '</pre><<< INPUTS >>><br>'; //------------------
 		// echo '<pre>'; var_dump($this->dataform); echo '</pre><<< DATA AVANT >>><br>'; //--------------------
 		for ($i=0; $i < count($this->inputs); $i++) {
-			
-
 			// SI champ obligatoire ...
 			if ($this->neededs["{$this->inputs[$i]}"]===true) {
 				// SI vide ... message d'erreur
-				if ( !isset($this->dataform["{$this->inputs[$i]}"]) ) {
+				if ( !isset($this->dataform["{$this->inputs[$i]}"]) || $this->dataform["{$this->inputs[$i]}"] === "" ) {
 					echo "Champ [{$this->inputs[$i]}] obligatoire !<br>";
-					exit();
+					return false;
 				}
 			}
 			else {
@@ -146,7 +144,7 @@ class Form_account
 	public function signUp() {
 		if (count($this->dataform) !== 0) {
 			// => CONTROL CHAINES
-			$this->verify_inputs(); // rend impossible les champs null ou undefined
+			if ($this->verify_inputs() === false) return; // rend impossible les champs null ou undefined
 			unset($this->dataform['createAccount']); // => uniquement dans ce cas precis (polution du myExecute)
 
 			// => REQUETE (compte existant ?)
@@ -174,7 +172,6 @@ class Form_account
 					$_SESSION = $prep_sqlSelect->fetch();
 					// => REDIRECTION 
 					header('Location: ./compte.php');
-					exit();
 				}
 				else echo "Erreur pendant la création du compte ..."; 
 			}
@@ -189,7 +186,7 @@ class Form_account
 	public function signIn(array $redirections) {
 		if (count($this->dataform) !== 0) {
 			// => CONTROL CHAINES
-			$this->verify_inputs(); // rend impossible les champs null ou undefined
+			if ($this->verify_inputs() === false) return; // rend impossible les champs null ou undefined
 			// echo '<pre>'; var_dump($this->dataform); echo '</pre>'; //-----------------
 
 			// => REQUETE
@@ -207,8 +204,7 @@ class Form_account
 								// => INIT SESSION
 								$_SESSION = $row;
 								// => REDIRECTION
-								// header('Location: '. $redirections["{$row['Type_name']}"]);
-								header('Location: '. $redirections["{$row['Id_type']}"]);
+								header('Location: '. $redirections[utf8_encode($row['Id_type'])]);
 								exit();
 							} else echo "Erreur de mot de passe";
 						} else echo "Erreur d'identifiants";
@@ -235,7 +231,7 @@ class Form_account
 			// echo '<pre>'; var_dump($prep_sqlSelect); echo '</pre><<< SQL SELECT >>><br>'; //---------------------
 
 			if ($prep_sqlSelect && $res = $prep_sqlSelect->fetch()) {
-				$update = $this->need_update($res);
+				$update = $this->need_update($res); // vérifit si une update est neccessaire
 			}
 			// echo '<pre>'; var_dump($res); echo '</pre><<< RES >>><br>'; //---------------------
 

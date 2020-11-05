@@ -11,29 +11,20 @@ if (be_connect()) {
 	exit();
 }
 /////////////// SECURITE ///////////////
-
 // echo '<pre>'; var_dump($_SESSION); echo '</pre><<< SESSION >>>'; //-----------------
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <!-- //////////////////////////////////// HEAD //////////////////////////////////// -->
-<?php require_once ROOT_SITE . './includes/head.php'; ?>
+<?php require_once SERVEUR_ROOT . '/includes/head.php'; ?>
 
-<!-- <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Connexion</title>
-	<link rel="stylesheet" href="../assets/css/test.css">
-</head> -->
-<!-- //////////////////////////////////////////////////////////// BODY //////////////////////////////////////////////////////////// -->
+<!-- //////////////////////////////////// BODY //////////////////////////////////// -->
+
 <body>
-<?php require_once ROOT_SITE . './includes/header.php'; ?>
-	
+	<!-- //////////////////////////////////// HEADER //////////////////////////////////// -->
+	<?php //require_once SERVEUR_ROOT . '/includes/header.php'; ?>
 
-<a href="../">Accueil</a>
-	
 	<main id="conteneur" class="conteneur">
-	
 		<!-- //////////// FORM CONNEXION //////////// -->
 		<form id="form_connexion" class="form_connexion" action="" method="POST">
 			<h2>Connexion</h2>
@@ -46,8 +37,8 @@ if (be_connect()) {
 		</form>
 
 		<!-- BOUTON SWITCH CONNEC/INSCRIP  -->
-		<label form="form_inscription" for="createAccount" class="inscriptionBtn" id="inscriptionBtn">Créer un compte</label>
-		<input form="form_inscription" type="checkbox" id="createAccount" name="createAccount">
+		<label class="inscriptionBtn" id="inscriptionBtn" form="form_inscription" for="createAccount">Créer un compte</label>
+		<input id="createAccount" form="form_inscription" type="checkbox" name="createAccount">
 
 		<!-- //////////// FORM INSCRIPTION //////////// -->
 		<form id="form_inscription" class="form_inscription" action="" method="POST">
@@ -63,19 +54,19 @@ if (be_connect()) {
 			// STATUTS
 			// utf8_encode change l'encodage des caracteres spéciaux, utilisé pour les donnees récupéré de la BDD et affiché
 			$res = $pdo->myQuery("SELECT Statut_name FROM statuts")->fetchAll(PDO::FETCH_NUM);
-			for ($i=0; $i < count($res); $i++) $res[$i] = utf8_encode($res[$i][0]);
+			for ($i = 0; $i < count($res); $i++) $res[$i] = utf8_encode($res[$i][0]);
 			echo $form_inscription->inputSelect('Votre statut', $res, 'Id_statut');
 			// NIVEAUX
 			$res = $pdo->myQuery("SELECT Niveau_name FROM niveaux")->fetchAll(PDO::FETCH_NUM);
-			for ($i=0; $i < count($res); $i++) $res[$i] = utf8_encode($res[$i][0]);
+			for ($i = 0; $i < count($res); $i++) $res[$i] = utf8_encode($res[$i][0]);
 			echo $form_inscription->inputSelect('Votre niveau', $res, 'Id_niveau');
 			// FORMATION
 			$res = $pdo->myQuery("SELECT Formation_name FROM formations")->fetchAll(PDO::FETCH_NUM);
 			echo '<div class="grp_radio"><span>Type de formation</span>';
-			for ($i=0; $i < count($res); $i++) { 
+			for ($i = 0; $i < count($res); $i++) {
 				$res[$i] = utf8_encode($res[$i][0]);
-				echo '<div>'.$form_inscription->inputRadio($res[$i]).'</div>';
-			}			
+				echo '<div>' . $form_inscription->inputRadio($res[$i]) . '</div>';
+			}
 			echo '</div>';
 
 			echo $form_inscription->inputText("Code premium", "Code ...", "Code");
@@ -84,7 +75,7 @@ if (be_connect()) {
 		</form>
 	</main>
 	<!-- JAVA SCRIPT -->
-	<script src="../assets/js/connexion.js"></script>
+	<?php require_once SERVEUR_ROOT.'/includes/scripts.php'; ?>
 
 	<?php //////////// METHODES CONNEXION / INSCRIPTION ////////////
 	// echo '<pre>'; var_dump($_POST); echo '</pre><<< POST >>><br>'; //-------------------------------
@@ -98,8 +89,11 @@ if (be_connect()) {
 	}
 	?>
 
+	<!-- //////////////////////////////////// FOOTER //////////////////////////////////// -->
+	<?php require_once SERVEUR_ROOT . '/includes/footer.php'; ?>
+
 	<!-- JAVA SCRIPT -->
-	<script src="../assets/js/password_visibility.js"></script>
+	
 </body>
 
 </html>

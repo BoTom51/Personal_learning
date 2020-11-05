@@ -1,1 +1,109 @@
-// formulaire pour la gestion de compte
+@import "./libs/fonctions.scss";
+/*//////////////// REGLES GROUPEES ////////////////*/
+.conteneur,
+.formAccount {
+	font-family: initial;
+   width: rem(300);
+   margin: rem(50) auto;
+   background-color: #ecf0f3;
+   box-shadow: #cbced1 rem(13) rem(13) rem(15), #ffffff rem(-13) rem(-13) rem(20);
+}
+.conteneur,
+.form_connexion,
+.form_inscription {
+   border-radius: 50px;
+   transition: height 0.5s ease;
+   overflow: hidden;
+}
+/*//////////////// FORM GESTION COMPTE ////////////////*/
+.formAccount {
+   border-radius: 50px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+/*//////////////// FORM CONNEXION / INSCIRPTION ////////////////*/
+.form_connexion,
+.form_inscription {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+h2 {
+   padding: rem(10);
+}
+/*///////// INPUT /////////*/
+label {
+   user-select: none;
+   margin: rem(5);
+}
+input[type="text"],
+input[type="password"],
+input[type="radio"],
+select {
+   text-align: center;
+   margin: rem(15);
+   padding: rem(10);
+   background-color: #cacaca4b;
+   box-shadow: #b4b4b4 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset, #b4b4b4 0.3rem 0.3rem 4rem; /*ombre mettant en valeur l'ombre interne blanche*/
+   border: none;
+   border-radius: 50px;
+}
+input[type="submit"] {
+   margin: rem(15);
+}
+.grp_radio {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+
+   span {
+      margin: rem(5);
+      width: 100%;
+      text-align: center;
+   }
+}
+div.pswd-voir {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+
+   div.btn-voir {
+      user-select: none;
+      position: absolute;
+      right: -20%;
+      top: 49.5%;
+   }
+}
+.btn {
+   border: none;
+   padding: rem(5) rem(8);
+   border-radius: 50px;
+   background-color: #cacaca4b;
+   box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset, #b4b4b4 0.3rem 0.3rem 4rem;
+
+   &:hover {
+      background-color: #cacacaa4;
+   }
+   &:active {
+      box-shadow: #ffffff 0.3rem 0.3rem 0.5rem inset, #ffffff -0.3rem -0.3rem 0.5rem inset, #b4b4b4 0.3rem 0.3rem 4rem;
+   }
+}
+/*///////// BOUTON SWITCH CONNEC/INSCRIP /////////*/
+.inscriptionBtn {
+   display: block; /*si l'element concerné est inline par defaut*/
+   margin: rem(15) auto;
+   text-decoration: underline;
+   user-select: none;
+   text-align: center;
+
+   &:hover {
+      background-color: #cacaca;
+      cursor: pointer;
+   }
+}
+input#createAccount {
+   display: none;
+}

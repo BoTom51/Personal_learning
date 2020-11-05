@@ -1,25 +1,20 @@
 <?php  //////////// INCLUDES ////////////
-require_once '../config.php';
 require_once '../includes/class/Autoloader.php';
 Autoloader::register(); //charge automatiquement tous les fichers de class a leur appel
 require_once '../includes/session.php';
+require_once '../config.php';
 ?>
 <!--//////////// HTML ////////////-->
 <!DOCTYPE html>
 <html lang="fr">
 <!-- //////////////////////////////////// HEAD //////////////////////////////////// -->
-<?php require_once ROOT_SITE . './includes/head.php'; ?>
-<!-- <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Gestion de compte</title>
-	
-	<link rel="stylesheet" href="../assets/css/test.css">
-</head> -->
+<?php require_once SERVEUR_ROOT.'/includes/head.php'; ?>
 
+<!-- //////////////////////////////////// BODY //////////////////////////////////// -->
 <body>
 	<!-- //////////////////////////////////// HEADER //////////////////////////////////// -->
-	<?php require_once ROOT_SITE . './includes/header.php'; ?>
+	<?php require_once SERVEUR_ROOT.'/includes/header.php'; ?>
+
 	<?php
 	go_connect(); // SI pas connecté ...
 	$pdo = new Database();
@@ -32,8 +27,6 @@ require_once '../includes/session.php';
 		}
 	} else $form = new Form_account($pdo, $_POST);
 
-	echo $form->signOut('Déconnexion', '../includes/session_close.php'); // => BOUTON DECONNEXION
-	echo '<a href="../">Accueil</a>';
 	// MESSAGES
 	// echo '<pre>'; var_dump($_SESSION); echo '</pre><<< SESSION >>><br>'; //-----------------
 	// echo '<pre>'; var_dump($_POST); echo '</pre><<< POST >>><br>';  //-----------------
@@ -70,14 +63,13 @@ require_once '../includes/session.php';
 		echo $form->submit("Validez les modifications");
 		?>
 	</form>
+	<?php $form->signUpdate();	// echo '<pre>'; var_dump($_SESSION); echo '</pre><<< SESSION >>><br>'; //-----------------?>
 
-	<?php /////////// MESSAGES ///////////
-		
-	$form->signUpdate();
-	// echo '<pre>'; var_dump($_SESSION); echo '</pre><<< SESSION >>><br>'; //-----------------
-	?>
+	<!-- //////////////////////////////////// FOOTER //////////////////////////////////// -->
+	<?php require_once SERVEUR_ROOT . '/includes/footer.php'; ?>
+
 	<!-- JAVA SCRIPT -->
-	<script src="../assets/js/password_visibility.js"></script>
+	<?php require_once SERVEUR_ROOT.'/includes/scripts.php'; ?>
 </body>
 
 </html>
