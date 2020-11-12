@@ -6,6 +6,7 @@ header {
    user-select: none;
    position: relative;
    background-color: #363636;
+   box-shadow: #00000071 0px 4px 5px;
 
    /////////////// BANNIERE / LOGO ///////////////
    h1 {
@@ -14,104 +15,155 @@ header {
    }
 
    /////////////// BARRE DE NAVIGATION ///////////////
-   // STICKY + HAMBURGER
-   nav {
+   // HAMBURGER
+   .menuBurger {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-      box-shadow: #00000071 0px 4px 5px;
+      position: fixed; /*toujour visible sur la page meme en scrollant*/
+      top: 0px;
+      right: 0px; /*si rigth, btnBurger order: 1;*/
+      z-index: 50;
 
-      ul {
-         list-style: none;
+      .btnBurger {
+         order: 1; /*si menu a droite*/
+         width: max-content;
+         height: rem(3);
+         padding: 0px rem(7) rem(56) rem(7);
+         text-align: center;
+         font-size: 35px;
+         font-weight: 900;
+         color: #ccccccd5;
+         border: solid 1px #cccccc59;
+         border-radius: 10px;
+         background-color: #363636;
+         box-shadow: #00000071 0px 4px 5px;
+      }
+
+      .checkBurger,
+      .contenuBuger {
+         display: none;
+      }
+
+      .checkBurger:checked + .contenuBuger {
          display: flex;
+      }
+
+      /*////////////// CONTENU DU MENU //////////////*/
+      .contenuBuger {
          flex-wrap: wrap;
-         justify-content: center;
-         align-items: center; //----------------------> attention
+         align-items: center;
+         justify-content: space-evenly;
+         width: 100%;
+         background-color: #363636;
 
-         border-radius: 5px;
-
-         li {
+         ul {
+            list-style: none;
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             align-items: center;
-            height: rem(50);
-         }
-         /////////////// INTERFACE NAVIGATION ///////////////
-         &.ui_nav {
-            background-color: #cacaca4b;
+            margin: rem(5);
+            border-radius: 5px;
 
-            a {
+            li {
                display: flex;
                align-items: center;
-               text-decoration: none;
-               padding: 0 rem(15);
-               color: initial; //--------------------------------------------
-               height: 100%;
-               border-bottom: solid #cacaca00 3px;
-               transition: border 0.3s;
-
-               &.current_page {
-                  pointer-events: none;
-                  color: #ffffff;
-                  border-bottom: solid gray 3px;
-               }
-
-               &:hover {
-                  border-bottom: solid gray 3px;
-               }
-               &:active {
-                  border-bottom: solid gray 3px;
-               }
+               height: rem(50);
             }
-         }
-         /////////////// INTERFACE RECHERCHE ///////////////
-         &.ui_search {
-            background-color: #cacaca4b;
-         }
-         /////////////// INTERFACE DE COMPTE ///////////////
-         &.ui_account {
-            li.btn_account {
-               align-items: initial;
+            /////////////// INTERFACE NAVIGATION ///////////////
+            &.ui_nav {
+               background-color: #cacaca4b;
 
                a {
-                  background-color: #cacaca4b;
-                  box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset;
                   display: flex;
                   align-items: center;
-                  justify-content: center;
-                  padding: rem(5);
-                  padding-left: rem(5);
-                  width: rem(70);
-                  border-top-right-radius: 5px;
-                  border-bottom-right-radius: 5px;
+                  text-decoration: none;
+                  padding: 0 rem(15);
+                  color: initial; //--------------------------------------------
+                  height: 100%;
+                  border-bottom: solid #cacaca00 3px;
+                  transition: border 0.3s;
 
+                  &.current_page {
+                     pointer-events: none;
+                     color: #ffffff;
+                     border-bottom: solid #808080 3px;
+                  }
+
+                  &:hover {
+                     border-bottom: solid #808080 3px;
+                  }
                   &:active {
-                     background-color: #e7e7e74b;
-                     box-shadow: #eeeeee 0.3rem 0.3rem 0.3rem inset, #eeeeee -0.3rem -0.3rem 0.3rem inset;
-                     //pointer-events: none; //---------------------------------------------------
+                     border-bottom: solid #808080 3px;
                   }
-                  &.btn_disconnect {
-                     // border-right: black solid 1px;
-                     padding-right: rem(5);
-                     border-radius: 0px;
-                     border-top-left-radius: 5px;
-                     border-bottom-left-radius: 5px;
+               }
+            }
+            /////////////// INTERFACE RECHERCHE ///////////////
+            &.ui_search {
+               background-color: #cacaca4b;
+            }
+            /////////////// INTERFACE DE COMPTE ///////////////
+            &.ui_account {
+               li.btn_account {
+                  align-items: initial;
 
-                     * {
-                        height: 100%;
+                  a {
+                     background-color: #cacaca4b;
+                     box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset;
+                     display: flex;
+                     align-items: center;
+                     justify-content: center;
+                     padding: rem(5);
+                     padding-left: rem(5);
+                     width: rem(70);
+                     border-top-right-radius: 5px;
+                     border-bottom-right-radius: 5px;
+
+                     &:active {
+                        background-color: #e7e7e74b;
+                        box-shadow: #eeeeee 0.3rem 0.3rem 0.3rem inset, #eeeeee -0.3rem -0.3rem 0.3rem inset;
+                        //pointer-events: none; //---------------------------------------------------
                      }
-                     img.icon_disconnect {
-                        width: rem(40);
+                     &.btn_disconnect {
+                        // border-right: black solid 1px;
+                        padding-right: rem(5);
+                        border-radius: 0px;
+                        border-top-left-radius: 5px;
+                        border-bottom-left-radius: 5px;
+
+                        * {
+                           height: 100%;
+                        }
+                        img.icon_disconnect {
+                           width: rem(40);
+                        }
                      }
-                  }
-                  &.btn_connect {
-                     width: 100%;
-                     border-radius: 5px;
-                     .icon_connect {
-                        width: rem(40);
+                     &.btn_connect {
+                        width: 100%;
+                        border-radius: 5px;
+                        .icon_connect {
+                           width: rem(40);
+                        }
                      }
                   }
                }
             }
+         }
+      }
+   }
+
+   @media screen and (min-width: 768px) {
+      .menuBurger {
+         position: static;
+         // margin: auto; /* ou width: 100%;*/
+         /*left: auto;*/ /*centre le menu si fixed*/
+
+         .btnBurger {
+            display: none;
+         }
+
+         .contenuBuger {
+            display: flex;
+            justify-content: space-evenly;
          }
       }
    }

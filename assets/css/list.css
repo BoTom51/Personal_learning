@@ -15,16 +15,97 @@
   flex-direction: column;
   align-items: center;
 }
+.list .card:nth-child(1) {
+  animation-delay: 200ms;
+}
+.list .card:nth-child(2) {
+  animation-delay: 400ms;
+}
+.list .card:nth-child(3) {
+  animation-delay: 600ms;
+}
+.list .card:nth-child(4) {
+  animation-delay: 800ms;
+}
+.list .card:nth-child(5) {
+  animation-delay: 1000ms;
+}
+.list .card:nth-child(6) {
+  animation-delay: 1200ms;
+}
+.list .card:nth-child(7) {
+  animation-delay: 1400ms;
+}
+.list .card:nth-child(8) {
+  animation-delay: 1600ms;
+}
+.list .card:nth-child(9) {
+  animation-delay: 1800ms;
+}
+.list .card:nth-child(10) {
+  animation-delay: 2000ms;
+}
+.list .card:nth-child(11) {
+  animation-delay: 2200ms;
+}
+.list .card:nth-child(12) {
+  animation-delay: 2400ms;
+}
+.list .card:nth-child(13) {
+  animation-delay: 2600ms;
+}
+.list .card:nth-child(14) {
+  animation-delay: 2800ms;
+}
+.list .card:nth-child(15) {
+  animation-delay: 3000ms;
+}
+.list .card:nth-child(16) {
+  animation-delay: 3200ms;
+}
+.list .card:nth-child(17) {
+  animation-delay: 3400ms;
+}
+.list .card:nth-child(18) {
+  animation-delay: 3600ms;
+}
+.list .card:nth-child(19) {
+  animation-delay: 3800ms;
+}
+.list .card:nth-child(20) {
+  animation-delay: 4000ms;
+}
+.list .card:nth-child(21) {
+  animation-delay: 4200ms;
+}
+.list .card:nth-child(22) {
+  animation-delay: 4400ms;
+}
+.list .card:nth-child(23) {
+  animation-delay: 4600ms;
+}
+.list .card:nth-child(24) {
+  animation-delay: 4800ms;
+}
+.list .card:nth-child(25) {
+  animation-delay: 5000ms;
+}
 .list .card {
+  position: relative;
   display: flex;
   margin: 0.625rem;
-  box-shadow: black 0px 0px 0.25rem;
+  border: #00000000 solid 2px;
+  opacity: 0;
+  animation-name: appear;
+  animation-duration: 700ms;
+  animation-fill-mode: forwards;
 }
 .list .card .lien_recomm {
   display: flex;
   text-decoration: none;
   color: initial;
   width: 100%;
+  box-shadow: #000000 0px 0px 0.25rem;
 }
 .list .card .lien_recomm .block_info {
   display: flex;
@@ -41,16 +122,21 @@
   width: 100%;
   padding: 0.1875rem;
 }
-.list .card .lien_recomm .block_info .describ {
+.list .card .lien_recomm .block_info .describe {
   text-align: center;
   width: 100%;
   padding: 0.1875rem;
 }
-.list .card .lien_recomm .block_info .describ strong {
+.list .card .lien_recomm .block_info .describe strong {
   display: inline;
   color: #2c47be;
 }
-.list .card .lien_recomm .block_info .category, .list .card .lien_recomm .block_info .sub_category, .list .card .lien_recomm .block_info .formation, .list .card .lien_recomm .block_info .niveau, .list .card .lien_recomm .block_info .article_date, .list .card .lien_recomm .block_info .product_price {
+.list .card .lien_recomm .block_info .category,
+.list .card .lien_recomm .block_info .sub_category,
+.list .card .lien_recomm .block_info .formation,
+.list .card .lien_recomm .block_info .niveau,
+.list .card .lien_recomm .block_info .article_date,
+.list .card .lien_recomm .block_info .product_price {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,7 +149,7 @@
 }
 .list .card .lien_recomm .block_info .product_price {
   width: 100%;
-  color: #ff5c5c;
+  color: #5cff72;
   font-size: 12px;
 }
 .list .card.card_mosaic {
@@ -89,7 +175,18 @@
   width: 66%;
 }
 .list .card:hover {
-  opacity: 0.9;
+  border: #0974ffc7 solid 2px;
+  box-shadow: #000000 0px 0px 0.25rem;
+}
+@keyframes appear {
+  0% {
+    top: -20px;
+    opacity: 0;
+  }
+  100% {
+    top: 0px;
+    opacity: 1;
+  }
 }
 
 /*# sourceMappingURL=list.css.map */

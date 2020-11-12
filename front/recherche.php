@@ -13,6 +13,7 @@ require_once SERVEUR_ROOT . '/includes/session.php';
 <?php require_once SERVEUR_ROOT . '/includes/head.php'; ?>
 
 <!-- //////////////////////////////////// BODY //////////////////////////////////// -->
+
 <body>
 	<!-- //////////////////////////////////// HEADER //////////////////////////////////// -->
 	<?php require_once SERVEUR_ROOT . '/includes/header.php'; ?>
@@ -20,12 +21,13 @@ require_once SERVEUR_ROOT . '/includes/session.php';
 	<!-- //////////////////////////////////// CONTENT //////////////////////////////////// -->
 	<main class="content">
 
-		<h2>Recherche<?= ($_GET['action'] === 'lessons') ? ' de cours' : ' d\'' . $_GET['action']; ?></h2>
+		<h2>Recherche avancée</h2>
 
+		<!-- //////////////////////////////////// BARRE DE NAV RECHERCHE //////////////////////////////////// -->
 		<nav class="recherche">
 			<!-- //////// FORMULAIRE //////// -->
 			<form id="formSearch" class="formSearch" action="" method="post">
-				<input type="text" name="key_word" id="inputSearch" placeholder="Mots-clés ..." value="<?= empty($_POST['key_word']) ? "" : $_POST['key_word']; ?>">
+				<input id="inputSearch" type="text" name="key_word" placeholder="Mots-clés ..." value="<?= empty($_POST['key_word']) ? "" : $_POST['key_word']; ?>">
 				<input class="btn" type="submit" value="Lancer">
 			</form>
 
@@ -36,8 +38,23 @@ require_once SERVEUR_ROOT . '/includes/session.php';
 			</div>
 
 			<!-- //////// filtres dynamiques //////// -->
+			<ul id="global_filters" class="global_filters">
+				<li>
+					<input class="filter_category" id="articles" form="formSearch" type="checkbox" name="articles" value="articles" <?= isset($_POST['articles']) ? 'checked' : '' ?>>
+					<label for="articles">Articles</label>
+				</li>
+				<li>
+					<input class="filter_category" id="lessons" form="formSearch" type="checkbox" name="lessons" value="lessons" <?= isset($_POST['lessons']) ? 'checked' : '' ?>>
+					<label for="lessons">Cours</label>
+				</li>
+				<li>
+					<input class="filter_category" id="exercices" form="formSearch" type="checkbox" name="exercices" value="exercices" <?= isset($_POST['exercices']) ? 'checked' : '' ?>>
+					<label for="exercices">Exercices</label>
+				</li>
+			</ul>
+
 			<ul id="filters" class="filters">
-				<?php $database = new Database();
+				<?php $database = new Database(); // ACCES BDD
 				$prep_sqlCatego = $database->myPrepare("SELECT * FROM categories");
 				$resCatego = $database->myExecute($prep_sqlCatego, [""])->fetchAll();
 				$prep_sqlCatego = null; ?>
@@ -67,88 +84,108 @@ require_once SERVEUR_ROOT . '/includes/session.php';
 			<?php ////////////////////////////////////////////////////////////////////////
 			//////////////////////// TRAITEMENT REQUETE FORMULAIRE ///////////////////////
 
-			if ($_GET['action'] === 'articles') $dbTable = 'articles';
-			elseif ($_GET['action'] === 'lessons') $dbTable = 'lessons';
-			elseif ($_GET['action'] === 'exercices') $dbTable = 'exercices';
-			elseif ($_GET['action'] === 'global') {$dbTableArticles = 'articles'; $dbTable = 'lessons, exercices';}
-			echo '<pre>'; var_dump($_POST); echo '</pre><br><<< POST >>>';//-----------------
+			// echo '<pre>';var_dump($_POST);echo '</pre><br><<< POST >>>'; //-----------------
+			$dbTable = $finalResult = [];
+			// Recherche ciblé
+			if (isset($_POST['articles'])) $dbTable[] = 'articles';
+			if (isset($_POST['lessons'])) $dbTable[] = 'lessons';
+			if (isset($_POST['exercices'])) $dbTable[] = 'exercices';
+			// SINON recherche globale
+			if (count($dbTable) === 0) $dbTable = ['articles', 'lessons', 'exercices'];
 
 			//////// REQUETE DE PREMIER CHARGEMENT DE PAGE => affiche tous les articles/cours/exercices ////////
-			if ($_GET['action'] !== 'global' && (count($_POST) === 0 || ($_POST["key_word"] === "") && count($_POST) === 1)) {
-				if($_GET['action'] === 'articles') $sql = "SELECT * FROM " . $dbTable . " NATURAL JOIN categories NATURAL JOIN sub_categories NATURAL JOIN formations NATURAL JOIN niveaux ORDER BY Id DESC";
-				else $sql = "SELECT * FROM " . $dbTable . " NATURAL JOIN categories NATURAL JOIN sub_categories NATURAL JOIN formations NATURAL JOIN niveaux NATURAL JOIN packages ORDER BY Id DESC";
-				$prep_sqlAccueil = $database->myPrepare($sql);
-				echo '<pre>'; var_dump($prep_sqlAccueil);	echo '</pre><br><<< SQL >>>';//-----------------
-				$res = $database->myExecute($prep_sqlAccueil, [""])->fetchAll();
-				// echo '<pre>'; var_dump($res);	echo '</pre><br><<< RES >>>';  exit();//-----------------
-				$prep_sqlAccueil = null;
+			if (count($_POST) === 0 || ($_POST["key_word"] === "" && count($_POST) === 1)) {
+
+				for ($i = 0; $i < count($dbTable); $i++) {
+					if ($dbTable[$i] === 'articles') $sql = "SELECT * FROM " . $dbTable[$i] . " NATURAL JOIN categories NATURAL JOIN sub_categories NATURAL JOIN formations NATURAL JOIN niveaux ORDER BY Date DESC";
+					else $sql = "SELECT * FROM " . $dbTable[$i] . " NATURAL JOIN categories NATURAL JOIN sub_categories NATURAL JOIN formations NATURAL JOIN niveaux NATURAL JOIN packages ORDER BY Date DESC";
+
+					$prep_sqlAccueil = $database->myPrepare($sql);
+					// echo '<pre>';var_dump($prep_sqlAccueil);echo '</pre><br><<< SQL >>>'; //-----------------
+					$res = $database->myExecute($prep_sqlAccueil, [""])->fetchAll(PDO::FETCH_ASSOC);
+					// echo '<pre>'; var_dump($res);	echo '</pre><br><<< RES >>>'; //-----------------
+					$finalResult = array_merge($finalResult, $res);
+					// echo '<pre>'; var_dump($finalResult);	echo '</pre><br><<< RES >>>'; //-----------------
+				}
+				$prep_sqlAccueil = $res = $sql = null;
+
+				shuffle($finalResult); // mélange aléatoire des objets du tableau pour un affichage varié
 			}
 			//////// REQUETE RECHERCHE ////////
-			elseif (count($_POST) !== 0) {
-				$tabCatego = $res = array();
-				$sqlGlobale = "SELECT * FROM " . $dbTable;
+			else {
+				$tabCatego = $finalResult = array();
 
-				// Si c'est une requete uniqement pour les articles ...
-				if($dbTable === 'articles') $sqlGlobale .= " NATURAL JOIN categories NATURAL JOIN sub_categories NATURAL JOIN formations NATURAL JOIN niveaux";
-				// SINON SI c'est une requete comprenant les articles ... on fait une requete séparement
-				elseif(isset($dbTableArticles)) {
-					$sqlArticles = $sqlGlobale;
-					$sqlArticles .= " NATURAL JOIN categories NATURAL JOIN sub_categories NATURAL JOIN formations NATURAL JOIN niveaux";
-					$prep_sqlArticles = $database->myPrepare($sqlArticles);
-					var_dump($prep_sqlGlobale); echo '<br><<< SQL >>>'; //-----------------
-					$res = $database->myExecute($prep_sqlArticles, ["%".utf8_decode($_POST['key_word'])."%","%".utf8_decode($_POST['key_word'])."%"])->fetchAll();
-					$prep_sqlArticles = null;
-					echo '<pre>'; var_dump($res);	echo '</pre><br><<< RES >>>'; //-----------------
-
-					// Requete pour les autres tables
-					$sqlGlobale .= " NATURAL JOIN categories NATURAL JOIN sub_categories NATURAL JOIN formations NATURAL JOIN niveaux NATURAL JOIN packages";
-				}
-				// SINON ... Requete pour les autres tables
-				else $sqlGlobale .= " NATURAL JOIN categories NATURAL JOIN sub_categories NATURAL JOIN formations NATURAL JOIN niveaux NATURAL JOIN packages";
-				
-				$sqlGlobale .= " WHERE";
-				// Prend en compte les categories selectionné 
+				// comptabiliser les categories selectionné 
 				for ($i = 0; $i < count($resCatego); $i++) {
-					if(isset($_POST["category_".($i+1)])) $tabCatego[] = $_POST["category_".($i+1)];
+					if (isset($_POST["category_" . ($i + 1)])) $tabCatego[] = $_POST["category_" . ($i + 1)];
 				}
-				if (count($tabCatego) === 0) $valCatego = "";
-				else $valCatego = " Id_category IN ('". implode("', '", $tabCatego) ."')";
 
-				// Prend la chaine de caractere en entrée
-				if($valCatego !== "" && $_POST['key_word'] !== "" ) $sqlGlobale .= $valCatego . " AND (Title LIKE ? OR Content LIKE ?)";
-				elseif($valCatego === "" && $_POST['key_word'] !== "" ) $sqlGlobale .= $valCatego . " (Title LIKE ? OR Content LIKE ?)";
-				else $sqlGlobale .= $valCatego;
+				for ($y = 0; $y < count($dbTable); $y++) {
+					if ($dbTable[$y] === 'articles') $sql = "SELECT * FROM " . $dbTable[$y] . " NATURAL JOIN categories NATURAL JOIN sub_categories NATURAL JOIN formations NATURAL JOIN niveaux";
+					else $sql = "SELECT * FROM " . $dbTable[$y] . " NATURAL JOIN categories NATURAL JOIN sub_categories NATURAL JOIN formations NATURAL JOIN niveaux NATURAL JOIN packages";
 
-				$prep_sqlGlobale = $database->myPrepare($sqlGlobale);
-				var_dump($prep_sqlGlobale); echo '<br><<< SQL >>>'; //-----------------
-				if($_POST['key_word'] === "") $res += $database->myExecute($prep_sqlGlobale, [""])->fetchAll();
-				else $res += $database->myExecute($prep_sqlGlobale, ["%".utf8_decode($_POST['key_word'])."%","%".utf8_decode($_POST['key_word'])."%"])->fetchAll();
-				// echo '<pre>'; var_dump($res);	echo '</pre><br><<< RES >>>'; //-----------------
-				$prep_sqlGlobale = null;
+					// echo '<pre>';var_dump($dbTable[$i]);var_dump($dbTable);echo '</pre><br><<< DATA >>>'; //-----------------
+					$sql .= " WHERE";
+					// iclure les categories
+					if (count($tabCatego) === 0) $valCatego = "";
+					else $valCatego = " Id_category IN ('" . implode("', '", $tabCatego) . "')";
 
+					// Prend la chaine de caractere en entrée
+					if ($valCatego !== "" && $_POST['key_word'] !== "") $sql .= $valCatego . " AND (Title LIKE ? OR Content LIKE ?)";
+					elseif ($valCatego === "" && $_POST['key_word'] !== "") $sql .= $valCatego . " (Title LIKE ? OR Content LIKE ?)";
+					else $sql .= $valCatego;
+
+					$prep_sql = $database->myPrepare($sql);
+					// var_dump($prep_sql);echo '<br><<< SQL >>>'; //-----------------
+
+					if ($_POST['key_word'] === "") $res = $database->myExecute($prep_sql, [""])->fetchAll(PDO::FETCH_ASSOC);
+					else $res = $database->myExecute($prep_sql, ["%" . utf8_decode($_POST['key_word']) . "%", "%" . utf8_decode($_POST['key_word']) . "%"])->fetchAll(PDO::FETCH_ASSOC);
+
+					// echo'<<< BOUCLE '.$y.' >>>'; //-----------------
+					$finalResult = array_merge($finalResult, $res);
+					// echo '<pre>'; var_dump($finalResult);	echo '</pre><br><<< RES >>>'; //-----------------
+				}
+				$prep_sql = null;
 
 				///////////// TRAITEMENT DES RESULTATS => COMPILATION CELON FILTRE DANS UN TABLEAU GENERIQUE
+
 			}
 			?>
 
 			<!-- //////// RESULTAT DE LA RECHERCHE (CARTES) //////// -->
-			<?php for ($i = 0; $i < count($res); $i++) : ?>
+			<?php if (count($finalResult) === 0)  echo '<span class="query_display">Aucune correspondance trouvé ...</span>'; ?>
+
+			<?php for ($i = 0; $i < count($finalResult); $i++) : 
+				// RECUP DES ID AVEC LA BONNE CORRESPONDANCE DE TABLE
+				$type = $id = '';
+				if (isset($finalResult[$i]['Id_article'])) {
+					$type = 'articles';
+					$id = $finalResult[$i]['Id_article'];
+				} elseif (isset($finalResult[$i]['Id_lesson'])) {
+					$type = 'lessons';
+					$id = $finalResult[$i]['Id_lesson'];
+				} elseif (isset($finalResult[$i]['Id_exercice'])) {
+					$type = 'exercices';
+					$id = $finalResult[$i]['Id_exercice'];
+				}
+				// CONSTRUCTION HTML DE LA 'CARTE'
+				?>
 				<card class="card card_mosaic">
-					<a class="lien_recomm" href="<?= ROOT_URL; ?>/front/fiche.php?id=<?= utf8_encode($res[$i]['Id']); ?>">
-						<img src="<?= ROOT_URL; ?>/assets/img/<?= utf8_encode($res[$i]['Picture']); ?>.jpg" alt="<?= utf8_encode($res[$i]['Title']); ?>">
+					<a class="lien_recomm" href="<?= ROOT_URL . "/front/fiche.php?id=" . $id . "&type=" . $type ?>">
+						<img src="<?= ROOT_URL . "/assets/img/" . utf8_encode($finalResult[$i]['Picture']) . ".jpg" ?>" alt="<?= utf8_encode($finalResult[$i]['Title']); ?>">
 						<info class="block_info">
-							<h3><?= utf8_encode($res[$i]['Title']); ?></h3>
-							<describ class="describ"><?= utf8_encode(substr($res[$i]['Content'], 0, 180)) . ' ...'; ?></describ>
-							<strong class="category"><?= utf8_encode($res[$i]['Category_name']); ?></strong>
-							<strong class="sub_category"><?= utf8_encode($res[$i]['Sub_category_name']); ?></strong>
-							<strong class="formation"><?= utf8_encode($res[$i]['Formation_name']); ?></strong>
-							<strong class="niveau"><?= utf8_encode($res[$i]['Niveau_name']); ?></strong>
-							<strong class="article_date"><?= utf8_encode($res[$i]['Date']); ?></strong>
-							<?php if(isset($res[$i]['Price'])) : ?>
-								<?php if($res[$i]['Num_package'] !== '0') : ?>
-									<strong class="product_price">PACKAGE : <?= utf8_encode($res[$i]['Price']); ?>&euro;</strong>
+							<h3><?= utf8_encode($finalResult[$i]['Title']); ?></h3>
+							<describe class="describe"><?= utf8_encode(substr($finalResult[$i]['Describ'], 0, 180)) . ' ...'; ?></describe>
+							<strong class="category"><?= utf8_encode($finalResult[$i]['Category_name']); ?></strong>
+							<strong class="sub_category"><?= utf8_encode($finalResult[$i]['Sub_category_name']); ?></strong>
+							<strong class="formation"><?= utf8_encode($finalResult[$i]['Formation_name']); ?></strong>
+							<strong class="niveau"><?= utf8_encode($finalResult[$i]['Niveau_name']); ?></strong>
+							<strong class="article_date"><?= utf8_encode($finalResult[$i]['Date']); ?></strong>
+							<?php if (isset($finalResult[$i]['Price_package'])) : ?>
+								<?php if ($finalResult[$i]['Price_package'] !== '0') : ?>
+									<strong class="product_price">PACKAGE : <?= utf8_encode($finalResult[$i]['Price_package']); ?>&euro;</strong>
 								<?php else : ?>
-								<strong class="product_price"><?= utf8_encode($res[$i]['Price']); ?>&euro;</strong>
+									<strong class="product_price"><?= utf8_encode($finalResult[$i]['Price']); ?>&euro;</strong>
 								<?php endif; ?>
 							<?php endif; ?>
 						</info>
@@ -164,6 +201,7 @@ require_once SERVEUR_ROOT . '/includes/session.php';
 	<?php require_once SERVEUR_ROOT . '/includes/footer.php'; ?>
 
 	<!-- JAVA SCRIPT -->
+
 	<?php require_once SERVEUR_ROOT . '/includes/scripts.php'; ?>
 </body>
 

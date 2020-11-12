@@ -1,0 +1,263 @@
+header {
+  width: 100%;
+  margin-bottom: 0.3125rem;
+  user-select: none;
+  position: relative;
+  background-color: #363636;
+  box-shadow: #00000071 0px 4px 5px;
+}
+header h1 {
+  text-align: center;
+  margin-bottom: 0.3125rem;
+}
+header .menuBurger {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: fixed;
+  /*toujour visible sur la page meme en scrollant*/
+  top: 0px;
+  right: 0px;
+  /*si rigth, btnBurger order: 2;*/
+  z-index: 50;
+  /*////////////// CONTENU DU MENU //////////////*/
+}
+header .menuBurger .container {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 0.3125rem;
+}
+header .menuBurger .container .list_basket,
+header .menuBurger .container .list_lybrary {
+  margin: 0.3125rem;
+}
+header .menuBurger .container .list_basket li,
+header .menuBurger .container .list_lybrary li {
+  margin: 0px 0.3125rem;
+  display: flex;
+  align-items: center;
+  height: 3.125rem;
+}
+header .menuBurger .btnBurger,
+header .menuBurger .btn_basket,
+header .menuBurger .btn_library {
+  position: relative;
+  order: 2;
+  /*si menu a droite*/
+  display: flex;
+  align-items: center;
+  height: 3.75rem;
+  padding: 0.125rem 0.625rem 0.3125rem;
+  text-align: center;
+  font-size: 35px;
+  font-weight: 900;
+  color: #ccccccd5;
+  border: solid 1px #cccccc59;
+  border-radius: 10px;
+  background-color: #363636;
+  box-shadow: #00000071 0px 4px 5px;
+}
+header .menuBurger .btnBurger img,
+header .menuBurger .btn_basket img,
+header .menuBurger .btn_library img {
+  width: 1.375rem;
+  height: 1.375rem;
+}
+header .menuBurger .btn_basket .count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 10px;
+  position: absolute;
+  background-color: red;
+  top: 2.1875rem;
+  right: 0.3125rem;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  border-radius: 50px;
+}
+header .menuBurger .checkBurger,
+header .menuBurger .check_basket,
+header .menuBurger .check_library,
+header .menuBurger .contenuBuger,
+header .menuBurger .content_basket,
+header .menuBurger .content_library {
+  display: none;
+}
+header .menuBurger .checkBurger:checked + .contenuBuger,
+header .menuBurger .check_basket:checked + .content_basket,
+header .menuBurger .check_library:checked + .content_library {
+  display: flex;
+  width: 100vw;
+}
+header .menuBurger div.content_basket,
+header .menuBurger div.content_library {
+  justify-content: flex-end;
+}
+header .menuBurger .contenuBuger,
+header .menuBurger .content_basket,
+header .menuBurger .content_library {
+  order: 1;
+  /*si menu a droite*/
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  background-color: #363636;
+}
+header .menuBurger .contenuBuger ul,
+header .menuBurger .content_basket ul,
+header .menuBurger .content_library ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0.3125rem;
+  border-radius: 5px;
+}
+header .menuBurger .contenuBuger ul li,
+header .menuBurger .content_basket ul li,
+header .menuBurger .content_library ul li {
+  display: flex;
+  align-items: center;
+  height: 3.125rem;
+}
+header .menuBurger .contenuBuger ul.ui_nav,
+header .menuBurger .content_basket ul.ui_nav,
+header .menuBurger .content_library ul.ui_nav {
+  background-color: #cacaca4b;
+}
+header .menuBurger .contenuBuger ul.ui_nav a,
+header .menuBurger .content_basket ul.ui_nav a,
+header .menuBurger .content_library ul.ui_nav a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 0.9375rem;
+  color: initial;
+  height: 100%;
+  border-bottom: solid #cacaca00 3px;
+  transition: border 0.3s;
+}
+header .menuBurger .contenuBuger ul.ui_nav a.current_page,
+header .menuBurger .content_basket ul.ui_nav a.current_page,
+header .menuBurger .content_library ul.ui_nav a.current_page {
+  pointer-events: none;
+  color: #ffffff;
+  border-bottom: solid #808080 3px;
+}
+header .menuBurger .contenuBuger ul.ui_nav a:hover,
+header .menuBurger .content_basket ul.ui_nav a:hover,
+header .menuBurger .content_library ul.ui_nav a:hover {
+  border-bottom: solid #808080 3px;
+}
+header .menuBurger .contenuBuger ul.ui_nav a:active,
+header .menuBurger .content_basket ul.ui_nav a:active,
+header .menuBurger .content_library ul.ui_nav a:active {
+  border-bottom: solid #808080 3px;
+}
+header .menuBurger .contenuBuger ul.ui_search,
+header .menuBurger .content_basket ul.ui_search,
+header .menuBurger .content_library ul.ui_search {
+  background-color: #cacaca4b;
+}
+header .menuBurger .contenuBuger ul.ui_account li.btn_account,
+header .menuBurger .content_basket ul.ui_account li.btn_account,
+header .menuBurger .content_library ul.ui_account li.btn_account {
+  align-items: initial;
+}
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a,
+header .menuBurger .content_basket ul.ui_account li.btn_account a,
+header .menuBurger .content_library ul.ui_account li.btn_account a {
+  background-color: #cacaca4b;
+  box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3125rem;
+  padding-left: 0.3125rem;
+  width: 4.375rem;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a:active,
+header .menuBurger .content_basket ul.ui_account li.btn_account a:active,
+header .menuBurger .content_library ul.ui_account li.btn_account a:active {
+  background-color: #e7e7e74b;
+  box-shadow: #eeeeee 0.3rem 0.3rem 0.3rem inset, #eeeeee -0.3rem -0.3rem 0.3rem inset;
+}
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a.btn_disconnect,
+header .menuBurger .content_basket ul.ui_account li.btn_account a.btn_disconnect,
+header .menuBurger .content_library ul.ui_account li.btn_account a.btn_disconnect {
+  padding-right: 0.3125rem;
+  border-radius: 0px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a.btn_disconnect *,
+header .menuBurger .content_basket ul.ui_account li.btn_account a.btn_disconnect *,
+header .menuBurger .content_library ul.ui_account li.btn_account a.btn_disconnect * {
+  height: 100%;
+}
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a.btn_disconnect img.icon_disconnect,
+header .menuBurger .content_basket ul.ui_account li.btn_account a.btn_disconnect img.icon_disconnect,
+header .menuBurger .content_library ul.ui_account li.btn_account a.btn_disconnect img.icon_disconnect {
+  width: 2.5rem;
+}
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a.btn_connect,
+header .menuBurger .content_basket ul.ui_account li.btn_account a.btn_connect,
+header .menuBurger .content_library ul.ui_account li.btn_account a.btn_connect {
+  width: 100%;
+  border-radius: 5px;
+}
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a.btn_connect .icon_connect,
+header .menuBurger .content_basket ul.ui_account li.btn_account a.btn_connect .icon_connect,
+header .menuBurger .content_library ul.ui_account li.btn_account a.btn_connect .icon_connect {
+  width: 2.5rem;
+}
+@media screen and (min-width: 768px) {
+  header .menuBurger {
+    position: static;
+    background-color: #363636;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  header .menuBurger .btnBurger {
+    display: none;
+  }
+  header .menuBurger .btn_basket,
+header .menuBurger .btn_library {
+    height: 3.125rem;
+    margin: 0.3125rem;
+    box-shadow: none;
+    position: relative;
+    border-radius: 5px;
+  }
+  header .menuBurger .btn_basket div.count,
+header .menuBurger .btn_library div.count {
+    top: 1.875rem;
+  }
+  header .menuBurger .container {
+    position: relative;
+  }
+  header .menuBurger .checkBurger:checked + .contenuBuger,
+header .menuBurger .check_basket:checked + .content_basket,
+header .menuBurger .check_library:checked + .content_library {
+    top: 3.4375rem;
+    display: flex;
+    width: min-content;
+  }
+  header .menuBurger .contenuBuger {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  header .menuBurger .content_basket,
+header .menuBurger .content_library {
+    position: absolute;
+  }
+}
+
+/*# sourceMappingURL=header_multiBurger.css.map */

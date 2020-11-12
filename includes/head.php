@@ -9,22 +9,28 @@
 		'compte' => 'Gestion de compte',
 		'connexion' => 'Connexion',
 		'fiche' => 'Fiche du produit',
-		'recherche' => 'Recherche',
-		'404' => 'Ouille ! Y a de la casse ...'
-	); ?>
+		'recherche' => 'Recherche avancée',
+		'404' => 'Ouille ! Y a d\'la casse ...'
+	);
 
-	<title><?= $arboSite[basename($_SERVER["PHP_SELF"], '.php')]; ?></title>
+	(isset($_GET['type']) && $_GET['type']==='articles') ? $title='Présentation du produit' : $title=$arboSite[basename($_SERVER["PHP_SELF"], '.php')] ;
+	?>
 
-	<!-- LINKS CSS -->
+	<title><?= $title ?></title>
+
+	<!-- CSS GLOBAL -->
 	<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/document.css" />
-	<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/header.css" />
+	<!-- <link rel="stylesheet" href="<?//= ROOT_URL; ?>/assets/css/header.css" /> -->
+	<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/header_multiBurger.css" />
+	<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/footer.css" />
 
+	<!-- CSS SPECIFIQUE -->
 	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "index" || basename($_SERVER["PHP_SELF"], '.php') === "recherche") : ?>
 		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/main.css" />
 		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/list.css" />
 	<?php endif; ?>
 
-	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "index") : ?>
+	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "index"/* || basename($_SERVER["PHP_SELF"], '.php') === "fiche"*/) : ?>
 		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/carrousel.css" />
 	<?php endif; ?>
 
@@ -36,5 +42,9 @@
 		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/form_account.css" />
 	<?php endif; ?>
 
-	<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/footer.css" />
+	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "fiche") : ?>
+		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/main.css" />
+		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/fiche.css" />
+	<?php endif; ?>
+
 </head>

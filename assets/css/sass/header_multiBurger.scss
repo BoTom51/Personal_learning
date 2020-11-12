@@ -1,0 +1,263 @@
+@import "./libs/fonctions.scss";
+
+header {
+   width: 100%;
+   margin-bottom: rem(5);
+   user-select: none;
+   position: relative;
+   background-color: #363636;
+   box-shadow: #00000071 0px 4px 5px;
+
+   /////////////// BANNIERE / LOGO ///////////////
+   h1 {
+      text-align: center;
+      margin-bottom: rem(5);
+   }
+
+   /////////////// BARRE DE NAVIGATION ///////////////
+   // HAMBURGER
+   .menuBurger {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      position: fixed; /*toujour visible sur la page meme en scrollant*/
+      top: 0px;
+      right: 0px; /*si rigth, btnBurger order: 2;*/
+      z-index: 50;
+
+      .container {
+         display: flex;
+         justify-content: end;
+         margin-bottom: rem(5);
+
+         .list_basket,
+         .list_lybrary {
+            margin: rem(5);
+
+            li {
+               margin: 0px rem(5);
+               display: flex;
+               align-items: center;
+               height: rem(50);
+            }
+         }
+      }
+
+      .btnBurger,
+      .btn_basket,
+      .btn_library {
+         position: relative;
+         order: 2; /*si menu a droite*/
+         display: flex;
+         align-items: center;
+         height: rem(60);
+         padding: rem(2) rem(10) rem(5);
+         text-align: center;
+         font-size: 35px;
+         font-weight: 900;
+         color: #ccccccd5;
+         border: solid 1px #cccccc59;
+         border-radius: 10px;
+         background-color: #363636;
+         box-shadow: #00000071 0px 4px 5px;
+
+         img {
+            width: rem(22);
+            height: rem(22);
+         }
+      }
+
+      .btn_basket .count {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         // content: "5";
+         color: black;
+         font-size: 10px;
+         position: absolute;
+         background-color: red;
+         top: rem(35);
+         right: rem(5);
+         width: rem(15);
+         height: rem(15);
+         border-radius: 50px;
+      }
+
+      .checkBurger,
+      .check_basket,
+      .check_library,
+      .contenuBuger,
+      .content_basket,
+      .content_library {
+         display: none;
+      }
+
+      .checkBurger:checked + .contenuBuger,
+      .check_basket:checked + .content_basket,
+      .check_library:checked + .content_library {
+         display: flex;
+         width: 100vw;
+      }
+
+      /*////////////// CONTENU DU MENU //////////////*/
+      div.content_basket,
+      div.content_library {
+         justify-content: flex-end;
+      }
+
+      .contenuBuger,
+      .content_basket,
+      .content_library {
+         order: 1; /*si menu a droite*/
+         flex-wrap: wrap;
+         align-items: center;
+         justify-content: space-evenly;
+         width: 100%;
+         background-color: #363636;
+
+         ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: rem(5);
+            border-radius: 5px;
+
+            li {
+               display: flex;
+               align-items: center;
+               height: rem(50);
+            }
+            /////////////// INTERFACE NAVIGATION ///////////////
+            &.ui_nav {
+               background-color: #cacaca4b;
+
+               a {
+                  display: flex;
+                  align-items: center;
+                  text-decoration: none;
+                  padding: 0 rem(15);
+                  color: initial; //--------------------------------------------
+                  height: 100%;
+                  border-bottom: solid #cacaca00 3px;
+                  transition: border 0.3s;
+
+                  &.current_page {
+                     pointer-events: none;
+                     color: #ffffff;
+                     border-bottom: solid #808080 3px;
+                  }
+
+                  &:hover {
+                     border-bottom: solid #808080 3px;
+                  }
+                  &:active {
+                     border-bottom: solid #808080 3px;
+                  }
+               }
+            }
+            /////////////// INTERFACE RECHERCHE ///////////////
+            &.ui_search {
+               background-color: #cacaca4b;
+            }
+            /////////////// INTERFACE DE COMPTE ///////////////
+            &.ui_account {
+               li.btn_account {
+                  align-items: initial;
+
+                  a {
+                     background-color: #cacaca4b;
+                     box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset;
+                     display: flex;
+                     align-items: center;
+                     justify-content: center;
+                     padding: rem(5);
+                     padding-left: rem(5);
+                     width: rem(70);
+                     border-top-right-radius: 5px;
+                     border-bottom-right-radius: 5px;
+
+                     &:active {
+                        background-color: #e7e7e74b;
+                        box-shadow: #eeeeee 0.3rem 0.3rem 0.3rem inset, #eeeeee -0.3rem -0.3rem 0.3rem inset;
+                        //pointer-events: none; //---------------------------------------------------
+                     }
+                     &.btn_disconnect {
+                        // border-right: black solid 1px;
+                        padding-right: rem(5);
+                        border-radius: 0px;
+                        border-top-left-radius: 5px;
+                        border-bottom-left-radius: 5px;
+
+                        * {
+                           height: 100%;
+                        }
+                        img.icon_disconnect {
+                           width: rem(40);
+                        }
+                     }
+                     &.btn_connect {
+                        width: 100%;
+                        border-radius: 5px;
+                        .icon_connect {
+                           width: rem(40);
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   @media screen and (min-width: 768px) {
+      .menuBurger {
+         position: static;
+         // left: 0px;
+         background-color: #363636;
+         flex-direction: row;
+         justify-content: center;
+         align-items: center;
+
+         .btnBurger {
+            display: none;
+         }
+
+         .btn_basket,
+         .btn_library {
+            height: rem(50);
+            margin: rem(5);
+            box-shadow: none;
+            position: relative;
+            border-radius: 5px;
+
+            div.count {
+               top: rem(30);
+            }
+         }
+
+         .container {
+            position: relative;
+         }
+
+         .checkBurger:checked + .contenuBuger,
+         .check_basket:checked + .content_basket,
+         .check_library:checked + .content_library {
+            top: rem(55);
+            display: flex;
+            width: min-content;
+         }
+
+         .contenuBuger {
+            display: flex;
+            justify-content: space-evenly;
+         }
+
+         .content_basket,
+         .content_library {
+            position: absolute;
+         }
+      }
+   }
+}

@@ -1,15 +1,14 @@
 @import "./libs/fonctions.scss";
 
 footer {
-   // border: solid black;
    display: flex;
    flex-wrap: wrap;
    justify-content: space-evenly;
 	width: 100%;
-	background-color: #363636; //---------------------------------->
+	background-color: #363636;
 	box-shadow: #00000071 0px -4px 5px;
 	font-weight: bolder;
-	text-shadow: #ffffff86 0px 0px 2px; //-------------------------->
+	text-shadow: #ffffff86 0px 0px 2px;
 
    h4 {
       font-size: 20px;
@@ -18,8 +17,7 @@ footer {
       width: 80%;
       margin-bottom: rem(5);
       text-align: center;
-      // border-bottom: 1px solid #0000002c;
-      border-bottom: 1px solid #ffffff1a; //-------------------------->
+      border-bottom: 1px solid #ffffff1a;
    }
 
    a,
@@ -61,7 +59,6 @@ footer {
    }
 
    .coordo {
-      // width: 50%;
       width: rem(420);
 
       li * {
@@ -76,8 +73,7 @@ footer {
       justify-content: center;
 		width: 100%;
 		padding: rem(5);
-		// border-top: 1px solid #0000002c;
-		border-top: 1px solid #ffffff1a; //-------------------------->
+		border-top: 1px solid #ffffff1a;
    }
 
    .social {
@@ -92,5 +88,10 @@ footer {
          border: initial;
          width: initial;
       }
+   }
+
+   .current_page {
+      pointer-events: none;
+      color: #ffffff;
    }
 }

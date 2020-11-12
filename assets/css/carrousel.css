@@ -27,11 +27,11 @@
   transition: left 0.4s ease-out;
   /*animation*/
 }
-.carousel .slides a.slide * {
+.carousel .slides .slide * {
   display: block;
   width: 100%;
 }
-.carousel .slides a.slide *:hover {
+.carousel .slides .slide *:hover {
   opacity: 0.9;
 }
 .carousel .zonefleche {

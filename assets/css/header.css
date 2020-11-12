@@ -4,34 +4,69 @@ header {
   user-select: none;
   position: relative;
   background-color: #363636;
+  box-shadow: #00000071 0px 4px 5px;
 }
 header h1 {
   text-align: center;
   margin-bottom: 0.3125rem;
 }
-header nav {
+header .menuBurger {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  position: fixed;
+  /*toujour visible sur la page meme en scrollant*/
+  top: 0px;
+  right: 0px;
+  /*si rigth, btnBurger order: 1;*/
+  z-index: 50;
+  /*////////////// CONTENU DU MENU //////////////*/
+}
+header .menuBurger .btnBurger {
+  order: 1;
+  /*si menu a droite*/
+  width: max-content;
+  height: 0.1875rem;
+  padding: 0px 0.4375rem 3.5rem 0.4375rem;
+  text-align: center;
+  font-size: 35px;
+  font-weight: 900;
+  color: #ccccccd5;
+  border: solid 1px #cccccc59;
+  border-radius: 10px;
+  background-color: #363636;
   box-shadow: #00000071 0px 4px 5px;
 }
-header nav ul {
+header .menuBurger .checkBurger,
+header .menuBurger .contenuBuger {
+  display: none;
+}
+header .menuBurger .checkBurger:checked + .contenuBuger {
+  display: flex;
+}
+header .menuBurger .contenuBuger {
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  background-color: #363636;
+}
+header .menuBurger .contenuBuger ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin: 0.3125rem;
   border-radius: 5px;
 }
-header nav ul li {
+header .menuBurger .contenuBuger ul li {
   display: flex;
   align-items: center;
   height: 3.125rem;
 }
-header nav ul.ui_nav {
+header .menuBurger .contenuBuger ul.ui_nav {
   background-color: #cacaca4b;
 }
-header nav ul.ui_nav a {
+header .menuBurger .contenuBuger ul.ui_nav a {
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -41,24 +76,24 @@ header nav ul.ui_nav a {
   border-bottom: solid #cacaca00 3px;
   transition: border 0.3s;
 }
-header nav ul.ui_nav a.current_page {
+header .menuBurger .contenuBuger ul.ui_nav a.current_page {
   pointer-events: none;
   color: #ffffff;
-  border-bottom: solid gray 3px;
+  border-bottom: solid #808080 3px;
 }
-header nav ul.ui_nav a:hover {
-  border-bottom: solid gray 3px;
+header .menuBurger .contenuBuger ul.ui_nav a:hover {
+  border-bottom: solid #808080 3px;
 }
-header nav ul.ui_nav a:active {
-  border-bottom: solid gray 3px;
+header .menuBurger .contenuBuger ul.ui_nav a:active {
+  border-bottom: solid #808080 3px;
 }
-header nav ul.ui_search {
+header .menuBurger .contenuBuger ul.ui_search {
   background-color: #cacaca4b;
 }
-header nav ul.ui_account li.btn_account {
+header .menuBurger .contenuBuger ul.ui_account li.btn_account {
   align-items: initial;
 }
-header nav ul.ui_account li.btn_account a {
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a {
   background-color: #cacaca4b;
   box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset;
   display: flex;
@@ -70,28 +105,42 @@ header nav ul.ui_account li.btn_account a {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-header nav ul.ui_account li.btn_account a:active {
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a:active {
   background-color: #e7e7e74b;
   box-shadow: #eeeeee 0.3rem 0.3rem 0.3rem inset, #eeeeee -0.3rem -0.3rem 0.3rem inset;
 }
-header nav ul.ui_account li.btn_account a.btn_disconnect {
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a.btn_disconnect {
   padding-right: 0.3125rem;
   border-radius: 0px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-header nav ul.ui_account li.btn_account a.btn_disconnect * {
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a.btn_disconnect * {
   height: 100%;
 }
-header nav ul.ui_account li.btn_account a.btn_disconnect img.icon_disconnect {
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a.btn_disconnect img.icon_disconnect {
   width: 2.5rem;
 }
-header nav ul.ui_account li.btn_account a.btn_connect {
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a.btn_connect {
   width: 100%;
   border-radius: 5px;
 }
-header nav ul.ui_account li.btn_account a.btn_connect .icon_connect {
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a.btn_connect .icon_connect {
   width: 2.5rem;
+}
+@media screen and (min-width: 768px) {
+  header .menuBurger {
+    position: static;
+    /*left: auto;*/
+    /*centre le menu si fixed*/
+  }
+  header .menuBurger .btnBurger {
+    display: none;
+  }
+  header .menuBurger .contenuBuger {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
 
 /*# sourceMappingURL=header.css.map */

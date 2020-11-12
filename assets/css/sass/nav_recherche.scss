@@ -76,14 +76,14 @@ nav.recherche {
    }
 
    //////////// LES FILTRES DE RECHERCHE ////////////
-   .filters {
+   .filters, .global_filters {
       list-style: none;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       padding: rem(10);
       width: 95%;
-      border-top: solid black 1px;
+      border-top: solid #000000 1px;
 
       li {
          display: flex;
@@ -91,6 +91,7 @@ nav.recherche {
          margin: rem(5);
 
          label {
+            cursor: pointer;
             user-select: none;
             padding: 0 rem(15);
             border: none;

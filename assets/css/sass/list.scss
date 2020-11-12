@@ -9,6 +9,7 @@
    margin-top: 2vh;
    margin-bottom: 5vh;
    font-size: 12px;
+   $nb-cards: 25 !default; // nombre par defaut d'elements comptabilisé dans la liste
 
    //////////// LISTE DE TYPE MOSAIQUE ////////////
    &.list_mosaic {
@@ -23,16 +24,29 @@
    }
 
    //////////// CONTENANT DES CARTES ... ////////////
+   // Pour tous les elements du class 'card' de 1 a 10 (defaut) ... boucle
+   @for $i from 1 through $nb_cards {
+      .card:nth-child(#{$i}) {
+        animation-delay: 200ms * $i; // retarder l'anim de chaque élem
+      }
+    }
+
    .card {
+      position: relative;
       display: flex;
       margin: rem(10);
-      box-shadow: black 0px 0px rem(4);
+      border: #00000000 solid 2px;
+      opacity: 0;
+      animation-name: appear;
+      animation-duration: 700ms; 
+      animation-fill-mode: forwards;
 
       .lien_recomm {
          display: flex;
          text-decoration: none;
          color: initial;
          width: 100%;
+         box-shadow: #000000 0px 0px rem(4);
 
          .block_info {
             display: flex;
@@ -50,18 +64,23 @@
                padding: rem(3);
             }
 
-            .describ {
+            .describe {
                text-align: center;
                width: 100%;
                padding: rem(3);
-               
+
                strong {
                   display: inline;
                   color: #2c47be;
                }
             }
 
-            .category, .sub_category, .formation, .niveau, .article_date, .product_price {
+            .category,
+            .sub_category,
+            .formation,
+            .niveau,
+            .article_date,
+            .product_price {
                display: flex;
                align-items: center;
                justify-content: center;
@@ -75,7 +94,7 @@
 
             .product_price {
                width: 100%;
-               color: #ff5c5c;
+               color: #5cff72;
                font-size: 12px;
             }
          }
@@ -113,7 +132,19 @@
       }
 
       &:hover {
-         opacity: 0.9;
+         border: #0974ffc7 solid 2px;
+         box-shadow: #000000 0px 0px rem(4);
+      }
+
+      @keyframes appear {
+         0% {
+            top: -20px;
+            opacity: 0;
+         }
+         100% {
+            top: 0px;
+            opacity: 1;
+         }
       }
    }
 }

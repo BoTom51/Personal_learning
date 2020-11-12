@@ -76,5 +76,9 @@ footer .social h4 {
   border: initial;
   width: initial;
 }
+footer .current_page {
+  pointer-events: none;
+  color: #ffffff;
+}
 
 /*# sourceMappingURL=footer.css.map */

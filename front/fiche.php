@@ -1,12 +1,40 @@
-<!-- //////////////////// FICHE DETaILL2 //////////////////// -->
+<?php ////////////////////////////////////////////////////////////////////////////////////////
+////////////////////// PAGE POUR CONSULTER LES ARTICLES/COURS/EXERCICES //////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
+require_once '../config.php';
+require_once SERVEUR_ROOT . '/includes/class/Autoloader.php';
+Autoloader::register(); //charge automatiquement tous les fichers de class a leur appel
+require_once SERVEUR_ROOT . '/includes/session.php';
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<!-- //////////////////////////////////// HEAD //////////////////////////////////// -->
+<?php require_once SERVEUR_ROOT . '/includes/head.php'; ?>
 
-<article>
+<!-- //////////////////////////////////// BODY //////////////////////////////////// -->
 
-	<details>
-		<summary>Epcot Center</summary>
-		<p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.</p>
-	</details>
+<body>
+	<!-- //////////////////////////////////// HEADER //////////////////////////////////// -->
+	<?php require_once SERVEUR_ROOT . '/includes/header.php'; ?>
 
-	<p><dfn>HTML</dfn> is the standard markup language for creating web pages.</p>
+	<!-- //////////////////////////////////// CONTENT //////////////////////////////////// -->
+	<main class="content">
 
-</article>
+		<?php 
+		// MISE EN PAGE ARTICLE
+		if ($_GET['type'] === 'articles') require SERVEUR_ROOT . '/includes/article.php';
+		
+		// MISE EN PAGE PRODUIT
+		if ($_GET['type'] === 'lessons' || $_GET['type'] === 'exercices') require_once SERVEUR_ROOT . '/includes/pack.php';
+		?>
+
+	</main>
+
+	<!-- //////////////////////////////////// FOOTER //////////////////////////////////// -->
+	<?php require_once SERVEUR_ROOT . '/includes/footer.php'; ?>
+
+	<!-- JAVA SCRIPT -->
+	<?php require_once SERVEUR_ROOT . '/includes/scripts.php'; ?>
+</body>
+
+</html>

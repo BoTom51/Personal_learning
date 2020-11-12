@@ -12,7 +12,9 @@ carouselS.forEach((element) => {
 	// l'attribut 'imgperframe' du carrousel détermine le nombre d'img visible
 	// l'attribut 'pasduslide' du carrousel détermine de combien d'img il glisse
    rail.style.width = `${(nbSlides * 100) / element.dataset.imgperframe}%`;
-
+   // rail.style.width = `${(100/nbSlides)}%`;
+console.log(nbSlides);
+console.log(rail.style.width);
    // Click fleches
    btnSuiv.addEventListener("click", () => {
       if (parseInt(rail.style.left) > Math.round(100 - ((nbSlides / element.dataset.imgperframe) * 100))) {

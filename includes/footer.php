@@ -3,10 +3,16 @@
 	<menu class="menu">
 		<h4>Menu</h4>
 		<ul>
-			<li><a href="<?= ROOT_URL; ?>">Accueil</a></li>
-			<li><a href="<?= ROOT_URL; ?>/front/recherche.php?action=0">Articles</a></li>
-			<li><a href="<?= ROOT_URL; ?>/front/recherche.php?action=1">Cours</a></li>
-			<li><a href="<?= ROOT_URL; ?>/front/recherche.php?action=2">Exercices</a></li>
+			<li><?= 
+            (basename($_SERVER["PHP_SELF"], '.php') === "index") ? '<a class="current_page" href="'.ROOT_URL.'">Accueil</a>'
+            : '<a href="'.ROOT_URL.'">Accueil</a>';
+         ?></li>
+         <li><?= 
+            (basename($_SERVER["PHP_SELF"], '.php') === "recherche") ? '<a class="current_page" href="'.ROOT_URL.'/front/recherche.php">Blog & Catalogue</a>'
+            : '<a href="'.ROOT_URL.'/front/recherche.php">Blog & Catalogue</a>';
+         ?></li>
+			<!-- <li><a href="<?//= ROOT_URL; ?>/front/recherche.php?action=1">Cours</a></li>
+			<li><a href="<?//= ROOT_URL; ?>/front/recherche.php?action=2">Exercices</a></li> -->
 		</ul>
 	</menu>
 
