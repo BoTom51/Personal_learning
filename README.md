@@ -32,24 +32,17 @@ BACKLOG :
 - Jetons cotegories clickable pour une redirection vers la page de recherche avec le filtre correspondant <br>
 - Transversalité des supports <br>
 - Espace commentaire sur les produits/articles <br>
-- Carrousel avec mouvement souris/tactil de slide <br>
+- Carrousel avec mouvement 'grab slide' <br>
 
 
 TO DO :
 
 
-- Formulaire de gestion du contenu et de compte, liste de produits, articles et compte dynamique AJAX (back) <br>
-
-
 DOING :
 
-- Panier / bibliotheque de compte <br>
-
+- Formulaire de gestion du contenu et de compte, liste de produits, articles et compte dynamique AJAX (back) <br>
 
 VERIFY :
-
-- CSS des composants des pages <br>
-- Menu burger (nav/compte/panier/biblio) <br>
 
 
 DONE : 
@@ -58,3 +51,6 @@ DONE :
 - Structure du site (cheminement pages) <br>
 - Page catalogue articles/cours/exercices (ajax) <br>
 - Fiches articles/cours/exercices
+- Panier / bibliotheque de compte <br>
+- CSS des composants des pages <br>
+- Menu burger (nav/compte/panier/biblio) <br>
