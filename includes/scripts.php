@@ -1,3 +1,8 @@
+<!-- JS GLOBAL -->
+<script src="<?= ROOT_URL ?>/assets/ajax/panier_library_ajax.js"></script>
+<script src="<?= ROOT_URL ?>/assets/js/lib.js"></script>
+
+<!-- JS SPECIFIQUE -->
 <?php if (basename($_SERVER["PHP_SELF"], '.php') === "index"/* || basename($_SERVER["PHP_SELF"], '.php') === "fiche"*/) : ?>
 	<script src="<?= ROOT_URL ?>/assets/js/carrousel.js"></script>
 <?php endif; ?>

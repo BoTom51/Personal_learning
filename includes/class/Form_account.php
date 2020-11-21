@@ -36,7 +36,7 @@ class Form_account
 			}
 			else {
 				if( $this->dataform["{$this->inputs[$i]}"] === null && $this->inputs[$i] !== 'Phone' && $this->inputs[$i] !== 'Code') $this->dataform["{$this->inputs[$i]}"] = '';
-				else if($this->dataform["{$this->inputs[$i]}"] === null) $this->dataform["{$this->inputs[$i]}"] = '0';
+				else if($this->dataform["{$this->inputs[$i]}"] === null) $this->dataform["{$this->inputs[$i]}"] = 0;
 			}
 			// utf8_decode change l'encodage des caracteres spéciaux, utilisé pour les donnees envoyé dans la BDD
 			$this->dataform["{$this->inputs[$i]}"] = utf8_decode( $this->dataform["{$this->inputs[$i]}"] ); 
@@ -94,7 +94,7 @@ class Form_account
 		$this->neededs += array($name=>$needed);
 		$this->inputs[] = $name;
 		// id brut => css/js
-		return "<div class='pswd-voir'><label for='{$name}'>{$title}</label><input type='password' id='Password' name='{$name}' placeholder='{$text}' ><div id='btnVoir' class='btn btn-voir'>Voir</div></div>";
+		return "<div class='pswd-voir'><label for='{$name}'>{$title}</label><input type='password' id='Password' name='{$name}' placeholder='{$text}'/><div id='btnVoir' class='btn btn-voir'>Voir</div></div>";
 	}
 	// SELECT
 	public function inputSelect(string $title, array $options, string $name, $needed=true) {
@@ -160,7 +160,7 @@ class Form_account
 				}	
 				$strColonnes = '(Id, ' . implode(', ', $this->inputs) .', Id_type)';
 				$strValeurs = '(:Id, :' . implode(', :', $this->inputs) . ', :Id_type)';
-				$this->dataform += array('Id_type'=>2); // le type d'utilisateur sera toujour le meme
+				$this->dataform += array('Id_type'=>2); // le type d'utilisateur sera toujour le meme (user)
 				$this->dataform += array('Id'=>0); // il sera auto-incré par rapport a la BDD
 
 				$prep_sqlCreate = $this->database->myPrepare("INSERT INTO users $strColonnes VALUES $strValeurs");
@@ -204,8 +204,7 @@ class Form_account
 								// => INIT SESSION
 								$_SESSION = $row;
 								// => REDIRECTION
-								header('Location: '. $redirections[utf8_encode($row['Id_type'])]);
-								exit();
+								header('Location: '. $redirections[$row['Id_type']]);
 							} else echo "Erreur de mot de passe";
 						} else echo "Erreur d'identifiants";
 				}

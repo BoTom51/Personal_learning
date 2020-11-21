@@ -25,7 +25,7 @@
 	<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/footer.css" />
 
 	<!-- CSS SPECIFIQUE -->
-	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "index" || basename($_SERVER["PHP_SELF"], '.php') === "recherche") : ?>
+	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "index" || basename($_SERVER["PHP_SELF"], '.php') === "recherche"/*  || basename($_SERVER["PHP_SELF"], '.php') === "back"*/) : ?>
 		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/main.css" />
 		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/list.css" />
 	<?php endif; ?>
@@ -38,13 +38,17 @@
 		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/nav_recherche.css" />
 	<?php endif; ?>
 
-	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "connexion" || basename($_SERVER["PHP_SELF"], '.php') === "compte" || basename($_SERVER["PHP_SELF"], '.php') === "back") : ?>
+	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "connexion" || basename($_SERVER["PHP_SELF"], '.php') === "compte") : ?>
 		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/form_account.css" />
 	<?php endif; ?>
 
 	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "fiche") : ?>
 		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/main.css" />
 		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/fiche.css" />
+	<?php endif; ?>
+
+	<?php if (basename($_SERVER["PHP_SELF"], '.php') === "back") : ?>
+		<link rel="stylesheet" href="<?= ROOT_URL; ?>/assets/css/back.css" />
 	<?php endif; ?>
 
 </head>

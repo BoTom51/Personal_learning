@@ -60,7 +60,30 @@ for ($i = 0; $i < count($dbTable); $i++) {
 			<strong class="price">PRIX DU SUPPORT : <?= utf8_encode($package[0]['Price']); ?> &euro;</strong>
 		<?php endif; ?>
 
-		<a href="<?= ROOT_URL . "/front/fiche.php?id=" . $resArticle['Id_package'] . "&type=packages" ?>" class="play_medium">Details package</a>
+		<?php if ($connected) : ?>
+
+			<?php  // SI dans la biblio, bouton lancer + redirection biblio client
+			if($_GET['type'] === 'articles') $packHere = $panier->selectPackageFromProduct($_GET['id'], $_GET['type']);
+			$inLibrary = $inBasket = false;
+			for ($i = 0; $i < count($_SESSION['Bibliotheque']['idPack']); $i++) {
+				if ($_SESSION['Bibliotheque']['idPack'][$i] === $packHere['Id_package']) $inLibrary = true;
+			}
+			// SI deja dans le panier, bouton désactivé
+			for ($i = 0; $i < count($_SESSION['Panier']['idPack']); $i++) {
+				if ($_SESSION['Panier']['idPack'][$i] === $packHere['Id_package']) $inBasket = true;
+			}
+			?>
+
+			<?php if ($inLibrary) : ?>
+				<span class="play_medium">Lancer</span>
+			<?php elseif ($inBasket) : ?>
+				<span class="add_to_basket disabled">Ajouter au Panier</span>
+			<?php else : ?>
+				<span class="add_to_basket">Ajouter au Panier</span>
+			<?php endif ?>
+
+		<?php endif ?>
+		
 	</action>
 
 </article>

@@ -3,28 +3,32 @@
 	<menu class="menu">
 		<h4>Menu</h4>
 		<ul>
-			<li><?= 
-            (basename($_SERVER["PHP_SELF"], '.php') === "index") ? '<a class="current_page" href="'.ROOT_URL.'">Accueil</a>'
-            : '<a href="'.ROOT_URL.'">Accueil</a>';
-         ?></li>
-         <li><?= 
-            (basename($_SERVER["PHP_SELF"], '.php') === "recherche") ? '<a class="current_page" href="'.ROOT_URL.'/front/recherche.php">Blog & Catalogue</a>'
-            : '<a href="'.ROOT_URL.'/front/recherche.php">Blog & Catalogue</a>';
-         ?></li>
-			<!-- <li><a href="<?//= ROOT_URL; ?>/front/recherche.php?action=1">Cours</a></li>
-			<li><a href="<?//= ROOT_URL; ?>/front/recherche.php?action=2">Exercices</a></li> -->
+			<li>
+				<?= (basename($_SERVER["PHP_SELF"], '.php') === "index") ? '<a class="current_page" href="' . ROOT_URL . '">Accueil</a>'
+					: '<a href="' . ROOT_URL . '">Accueil</a>'; ?>
+			</li>
+			<li>
+				<?= (basename($_SERVER["PHP_SELF"], '.php') === "recherche") ? '<a class="current_page" href="' . ROOT_URL . '/front/recherche.php">Blog & Catalogue</a>'
+					: '<a href="' . ROOT_URL . '/front/recherche.php">Blog & Catalogue</a>'; ?>
+			</li>
 		</ul>
 	</menu>
 
 	<account class="account">
 		<h4>Gestion de Compte</h4>
 		<ul>
-			<?php if (be_connect()) : ?>
+			<?php if ($connected) : ?>
 				<li><a href="<?= ROOT_URL; ?>/includes/session_close.php">Déconnexion</a></li>
-				<li><a href="<?= ROOT_URL; ?>/front/compte.php"></a>Votre compte</li>
+				<li>
+					<?= (basename($_SERVER["PHP_SELF"], '.php') === "compte") ? '<a class="current_page" href="' . ROOT_URL . '/front/compte.php">Votre compte</a>'
+						: '<a href="' . ROOT_URL . '/front/compte.php">Votre compte</a>'; ?>
+				</li>
 				<li><a href="#">Demande de désinscription</a></li>
 			<?php else : ?>
-				<li><a href="<?= ROOT_URL; ?>/front/connexion.php">Se connecter / S'inscrire</a></li>
+				<li>
+					<?= (basename($_SERVER["PHP_SELF"], '.php') === "connexion") ? '<a class="current_page" href="' . ROOT_URL . '/front/connexion.php">Se connecter / S\'inscrire</a>'
+						: '<a href="' . ROOT_URL . '/front/connexion.php">Se connecter / S\'inscrire</a>'; ?>
+				</li>
 			<?php endif; ?>
 		</ul>
 	</account>
@@ -50,6 +54,6 @@
 		<a title="instagram" href=""><img src="<?= ROOT_URL; ?>/assets/icon/instagram_icon.png" alt="instagram"></a>
 	</social>
 
-	<copyright class="copyright">©2021 - Site créé par : Moi !</copyright>
+	<copyright class="copyright">©2021 - Tout droits réservés. Personal learning.com</copyright>
 
 </footer>
