@@ -5,6 +5,8 @@ require_once '../config.php';
 require_once SERVEUR_ROOT . '/includes/class/Autoloader.php';
 Autoloader::register(); //charge automatiquement tous les fichers de class a leur appel
 require_once SERVEUR_ROOT . '/includes/session.php';
+if (be_connect()) $connected = true;
+else $connected = false;
 // echo '<pre>'; var_dump($_SESSION); echo '</pre><<< SESSION >>>';//-----------------
 ?>
 <!DOCTYPE html>
@@ -15,6 +17,11 @@ require_once SERVEUR_ROOT . '/includes/session.php';
 <!-- //////////////////////////////////// BODY //////////////////////////////////// -->
 
 <body>
+<?php if($connected) : ?>
+	<script>
+		let id_user = <?= $_SESSION['Id'] ?>; //----------------> BEURK
+	</script>
+<?php endif ?>
 	<!-- //////////////////////////////////// HEADER //////////////////////////////////// -->
 	<?php require_once SERVEUR_ROOT . '/includes/header.php'; ?>
 
@@ -181,6 +188,7 @@ require_once SERVEUR_ROOT . '/includes/session.php';
 							<strong class="formation"><?= utf8_encode($finalResult[$i]['Formation_name']); ?></strong>
 							<strong class="niveau"><?= utf8_encode($finalResult[$i]['Niveau_name']); ?></strong>
 							<strong class="article_date"><?= utf8_encode($finalResult[$i]['Date']); ?></strong>
+							
 							<?php if (isset($finalResult[$i]['Price_package'])) : ?>
 								<?php if ($finalResult[$i]['Price_package'] !== '0') : ?>
 									<strong class="product_price">PACKAGE : <?= utf8_encode($finalResult[$i]['Price_package']); ?>&euro;</strong>

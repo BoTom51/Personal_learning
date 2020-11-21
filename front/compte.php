@@ -1,19 +1,27 @@
 <?php  //////////// INCLUDES ////////////
-require_once '../includes/class/Autoloader.php';
-Autoloader::register(); //charge automatiquement tous les fichers de class a leur appel
-require_once '../includes/session.php';
 require_once '../config.php';
+require_once SERVEUR_ROOT . '/includes/class/Autoloader.php';
+Autoloader::register(); //charge automatiquement tous les fichers de class a leur appel
+require_once SERVEUR_ROOT . '/includes/session.php';
+if (be_connect()) $connected = true;
+else $connected = false;
 ?>
 <!--//////////// HTML ////////////-->
 <!DOCTYPE html>
 <html lang="fr">
 <!-- //////////////////////////////////// HEAD //////////////////////////////////// -->
-<?php require_once SERVEUR_ROOT.'/includes/head.php'; ?>
+<?php require_once SERVEUR_ROOT . '/includes/head.php'; ?>
 
 <!-- //////////////////////////////////// BODY //////////////////////////////////// -->
+
 <body>
+<?php if($connected) : ?>
+	<script>
+		let id_user = <?= $_SESSION['Id'] ?>; //----------------> BEURK
+	</script>
+<?php endif ?>
 	<!-- //////////////////////////////////// HEADER //////////////////////////////////// -->
-	<?php require_once SERVEUR_ROOT.'/includes/header.php'; ?>
+	<?php require_once SERVEUR_ROOT . '/includes/header.php'; ?>
 
 	<?php
 	go_connect(); // SI pas connecté ...
@@ -22,9 +30,7 @@ require_once '../config.php';
 	if (empty($_POST)) {
 		$prep_sqlSelect = $pdo->myPrepare("SELECT * FROM users WHERE Email = :Email");
 		$pdo->myExecute($prep_sqlSelect, ['Email' => $_SESSION['Email']]);
-		if ($prep_sqlSelect && $res = $prep_sqlSelect->fetch()) {
-			$form = new Form_account($pdo, $res);
-		}
+		if ($prep_sqlSelect && $res = $prep_sqlSelect->fetch()) $form = new Form_account($pdo, $res);
 	} else $form = new Form_account($pdo, $_POST);
 
 	// MESSAGES
@@ -44,32 +50,33 @@ require_once '../config.php';
 		echo $form->inputText("Téléphone", "Téléphone ...", "Phone");
 		// STATUTS
 		$res = $pdo->myQuery("SELECT Statut_name FROM statuts")->fetchAll(PDO::FETCH_NUM);
-		for ($i=0; $i < count($res); $i++) $res[$i] = utf8_encode($res[$i][0]);
-		echo $form ->inputSelect('Votre statut', $res, 'Id_statut');
+		for ($i = 0; $i < count($res); $i++) $res[$i] = utf8_encode($res[$i][0]);
+		echo $form->inputSelect('Votre statut', $res, 'Id_statut');
 		// NIVEAUX
 		$res = $pdo->myQuery("SELECT Niveau_name FROM niveaux")->fetchAll(PDO::FETCH_NUM);
-		for ($i=0; $i < count($res); $i++) $res[$i] = utf8_encode($res[$i][0]);
-		echo $form ->inputSelect('Votre niveau', $res, 'Id_niveau');
+		for ($i = 0; $i < count($res); $i++) $res[$i] = utf8_encode($res[$i][0]);
+		echo $form->inputSelect('Votre niveau', $res, 'Id_niveau');
 		// FORMATION
 		$res = $pdo->myQuery("SELECT Formation_name FROM formations")->fetchAll(PDO::FETCH_NUM);
 		echo '<div class="grp_radio"><span>Type de formation</span>';
-		for ($i=0; $i < count($res); $i++) { 
+		for ($i = 0; $i < count($res); $i++) {
 			$res[$i] = utf8_encode($res[$i][0]);
-			echo '<div>'.$form ->inputRadio($res[$i]).'</div>';
-		}			
+			echo '<div>' . $form->inputRadio($res[$i]) . '</div>';
+		}
 		echo '</div>';
 
 		echo $form->inputText("Code premium", "Code ...", "Code");
 		echo $form->submit("Validez les modifications");
 		?>
 	</form>
-	<?php $form->signUpdate();	// echo '<pre>'; var_dump($_SESSION); echo '</pre><<< SESSION >>><br>'; //-----------------?>
+	<?php $form->signUpdate();	// echo '<pre>'; var_dump($_SESSION); echo '</pre><<< SESSION >>><br>'; //-----------------
+	?>
 
 	<!-- //////////////////////////////////// FOOTER //////////////////////////////////// -->
 	<?php require_once SERVEUR_ROOT . '/includes/footer.php'; ?>
 
 	<!-- JAVA SCRIPT -->
-	<?php require_once SERVEUR_ROOT.'/includes/scripts.php'; ?>
+	<?php require_once SERVEUR_ROOT . '/includes/scripts.php'; ?>
 </body>
 
 </html>
