@@ -22,37 +22,34 @@ else $connected = false;
 	<!-- //////////////////////////////////// CONTENT //////////////////////////////////// -->
 	<main class="content">
 
-		<h2>Interface d'administration du site</h2>
+		<?php if (be_connect()) : ?>
+			<a href="../includes/session_close.php">Déconnexion</a>
+			<a href="../front/compte.php">Compte Admin</a>
+			<a href="../">Accueil</a>
+		<?php else : ?>
+			<a href="../front/connexion.php">Connexion</a>
+		<?php endif ?>
 
-		<aside class="sous_menu">
-			<div id="accordeon">Comptes</div>
-			<div class="options">
-				<span>Liste des comptes</span>
-				<span>Créer</span>
-				<span>Modifier</span>
-				<span>Supprimer</span>
-			</div>
-			<div id="accordeon">Articles</div>
-			<div class="options">
-				<span>Liste des articles</span>
-				<span>Créer</span>
-				<span>Modifier</span>
-				<span>Supprimer</span>
-			</div>
-			<div id="accordeon">Packages</div>
-			<div class="options">
-				<span>Liste des packages</span>
-				<span>Créer</span>
-				<span>Modifier</span>
-				<span>Supprimer</span>
-			</div>
-		</aside>
+		<form id="formAccount" class="formAccount" action="#" method="POST">
+			<!-- <div class="block_inscription" id="block_inscription"> -->
+			<h2>Suppression de comptes</h2>
+			<?php
+			$form = new Form_account(new Database());
+			echo $form->inputText("E-mail", "E-mail ...", "Email", true);
+			echo $form->submit("Supprimer le compte");
+			?>
+			<!-- </div> -->
+		</form>
 
-		<div class="window">
+		<?php
+		echo '<pre>';
+		var_dump($_POST);
+		echo '</pre><<< POST >>><br>'; //-----------------
 
-
-
-		</div>
+		if (isset($_POST['Login'])) {
+			$form->signDown($_POST['Email']);
+		} else echo 'Entrez la cible !<br>';
+		?>
 
 	</main>
 
