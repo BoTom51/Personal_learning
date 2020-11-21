@@ -1,0 +1,92 @@
+////////////////// BACK POUR ADMINISTER LE CONTENU DU SITE/BDD //////////////////
+@import "./libs/fonctions.scss";
+
+$menu_width: rem(170);
+$global_border_color: #f1f1f165;
+$header_bgc: #363636;
+
+//////////////////// CONTENU PAGE ////////////////////
+.content {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-wrap: wrap;
+   height: 100%;
+   width: 100%;
+   margin: rem(15) 0px rem(30) 0px;
+
+   // background-color: #ecf0f3;
+   // box-shadow: #cbced1 rem(13) rem(13) rem(15), #ffffff rem(-13) rem(-13) rem(20);
+
+   h2 {
+      width: 100%;
+      text-align: center;
+      padding: rem(5);
+      margin: rem(15);
+   }
+}
+
+//////////////////// MENU ////////////////////
+.sous_menu {
+   user-select: none;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: flex-start;
+   width: $menu_width;
+   height: 100%;
+
+   #accordeon {
+      position: relative;
+      padding: rem(5);
+      width: 100%;
+      background-color: $header_bgc;
+      text-align: center;
+
+      &::before {
+         content: '';
+         position: absolute;
+         height: 0;
+         width: 0;
+         left: rem(15);
+         border-top: 10px solid transparent;
+         border-bottom: 10px solid transparent;
+         border-left: 10px solid transparent;
+         border-left-color: inherit;
+
+         transform: rotateZ(90deg);
+      }
+   }
+
+   .options {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      & > * {
+         cursor: pointer;
+         width: 100%;
+         padding: rem(5);
+         box-shadow: $header_bgc 0 0 rem(5) inset, $header_bgc 0 0 rem(5) inset;
+
+         &:hover {
+            background-color: #4e4e4e;
+         }
+      }
+   }
+}
+
+//////////////////// FENETRE D'ADMINISTRATION ////////////////////
+.window {
+   border: solid 1px $global_border_color;
+   border-radius: 10px;
+   width: 85%;
+   height: 100%;
+   margin-left: rem(15);
+
+   // background-color: #ecf0f3;
+   // box-shadow: #cbced1 rem(13) rem(13) rem(15), #ffffff rem(-13) rem(-13) rem(20);
+
+   background-color: #cacaca4b;
+   box-shadow: #b4b4b4 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset, #b4b4b4 0.3rem 0.3rem 4rem;
+}

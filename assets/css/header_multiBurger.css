@@ -27,20 +27,152 @@ header .menuBurger .container {
   justify-content: end;
   margin-bottom: 0.3125rem;
 }
+header .menuBurger .container #openModal {
+  margin: 0.3125rem auto;
+  padding: 0 0.3125rem;
+  border: #f1f1f165 solid 2px;
+  border-radius: 5px;
+  background-color: #00af00;
+  cursor: pointer;
+}
+header .menuBurger .container .list_basket {
+  width: 100%;
+  justify-content: flex-end;
+  background-color: #363636;
+}
 header .menuBurger .container .list_basket,
-header .menuBurger .container .list_lybrary {
-  margin: 0.3125rem;
+header .menuBurger .container .list_library {
+  padding: 0.3125rem;
+  display: flex;
 }
 header .menuBurger .container .list_basket li,
-header .menuBurger .container .list_lybrary li {
+header .menuBurger .container .list_library li {
+  position: relative;
   margin: 0px 0.3125rem;
   display: flex;
   align-items: center;
-  height: 3.125rem;
+  height: 5rem;
+}
+header .menuBurger .container .list_basket li.thumbnail,
+header .menuBurger .container .list_library li.thumbnail {
+  font-size: 12px;
+  font-weight: bolder;
+  border: #f1f1f12c solid 1px;
+  cursor: pointer;
+}
+header .menuBurger .container .list_basket li.thumbnail .library_title_package,
+header .menuBurger .container .list_library li.thumbnail .library_title_package {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  border-radius: 3px;
+  background-color: #363636;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -1.375rem;
+  box-shadow: #ffffff 0rem 0rem 0.625rem;
+}
+header .menuBurger .container .list_basket li.thumbnail .library_link,
+header .menuBurger .container .list_library li.thumbnail .library_link {
+  height: 100%;
+}
+header .menuBurger .container .list_basket li img,
+header .menuBurger .container .list_library li img {
+  height: 100%;
+}
+header .menuBurger .container .list_basket li .ui_thumbnail,
+header .menuBurger .container .list_library li .ui_thumbnail {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  height: 7.8125rem;
+  width: 100%;
+  opacity: 0;
+  z-index: -10;
+  cursor: pointer;
+}
+header .menuBurger .container .list_basket li .ui_thumbnail.ui_open,
+header .menuBurger .container .list_library li .ui_thumbnail.ui_open {
+  animation: ui_appear 1s forwards;
+}
+header .menuBurger .container .list_basket li .ui_thumbnail.ui_close,
+header .menuBurger .container .list_library li .ui_thumbnail.ui_close {
+  animation: ui_desappear 1s forwards;
+}
+@keyframes ui_appear {
+  from {
+    z-index: -10;
+    opacity: 0;
+  }
+  to {
+    z-index: 100;
+    opacity: 1;
+  }
+}
+@keyframes ui_desappear {
+  from {
+    z-index: 100;
+    opacity: 1;
+  }
+  to {
+    z-index: -10;
+    opacity: 0;
+  }
+}
+header .menuBurger .container .list_basket li .ui_thumbnail .basket_title_package,
+header .menuBurger .container .list_basket li .ui_thumbnail .basket_price_package,
+header .menuBurger .container .list_library li .ui_thumbnail .basket_title_package,
+header .menuBurger .container .list_library li .ui_thumbnail .basket_price_package {
+  text-align: center;
+  width: 100%;
+  border-radius: 3px;
+  background-color: #363636;
+  box-shadow: #ffffff 0rem 0rem 0.625rem;
+}
+header .menuBurger .container .list_basket li .ui_thumbnail #btnVoir,
+header .menuBurger .container .list_basket li .ui_thumbnail #btnSuppr,
+header .menuBurger .container .list_library li .ui_thumbnail #btnVoir,
+header .menuBurger .container .list_library li .ui_thumbnail #btnSuppr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.1875rem;
+  border-radius: 50px;
+  background-color: #888888a8;
+  box-shadow: #000000be 0rem 0rem 0.3125rem;
+  transition: box-shadow 0.5s;
+}
+header .menuBurger .container .list_basket li .ui_thumbnail #btnVoir img,
+header .menuBurger .container .list_basket li .ui_thumbnail #btnSuppr img,
+header .menuBurger .container .list_library li .ui_thumbnail #btnVoir img,
+header .menuBurger .container .list_library li .ui_thumbnail #btnSuppr img {
+  width: 1.875rem;
+}
+header .menuBurger .container .list_basket li .ui_thumbnail #btnVoir,
+header .menuBurger .container .list_library li .ui_thumbnail #btnVoir {
+  margin-left: 0.125rem;
+  margin-right: auto;
+  background-color: #0050b9;
+}
+header .menuBurger .container .list_basket li .ui_thumbnail #btnVoir:hover,
+header .menuBurger .container .list_library li .ui_thumbnail #btnVoir:hover {
+  box-shadow: #ffffff 0rem 0rem 0.625rem;
+}
+header .menuBurger .container .list_basket li .ui_thumbnail #btnSuppr,
+header .menuBurger .container .list_library li .ui_thumbnail #btnSuppr {
+  margin-right: 0.125rem;
+  margin-left: auto;
+  background-color: #940000;
+}
+header .menuBurger .container .list_basket li .ui_thumbnail #btnSuppr:hover,
+header .menuBurger .container .list_library li .ui_thumbnail #btnSuppr:hover {
+  box-shadow: #ffffff 0rem 0rem 0.625rem;
 }
 header .menuBurger .btnBurger,
 header .menuBurger .btn_basket,
-header .menuBurger .btn_library {
+header .menuBurger .btn_library, header .menuBurger .door {
   position: relative;
   order: 2;
   /*si menu a droite*/
@@ -56,21 +188,26 @@ header .menuBurger .btn_library {
   border-radius: 10px;
   background-color: #363636;
   box-shadow: #00000071 0px 4px 5px;
+  transition: box-shadow 0.5s ease;
+  cursor: pointer;
 }
 header .menuBurger .btnBurger img,
 header .menuBurger .btn_basket img,
-header .menuBurger .btn_library img {
+header .menuBurger .btn_library img, header .menuBurger .door img {
+  height: 1.5625rem;
   width: 1.375rem;
-  height: 1.375rem;
+}
+header .menuBurger .clickBtn {
+  box-shadow: #ffffffde 0rem 0rem 0.3125rem inset, #ffffffde 0rem 0rem 0.3125rem inset !important;
 }
 header .menuBurger .btn_basket .count {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: black;
+  color: #000000;
   font-size: 10px;
   position: absolute;
-  background-color: red;
+  background-color: #ff0000;
   top: 2.1875rem;
   right: 0.3125rem;
   width: 0.9375rem;
@@ -91,19 +228,22 @@ header .menuBurger .check_library:checked + .content_library {
   display: flex;
   width: 100vw;
 }
+header .menuBurger .content_basket {
+  flex-wrap: wrap;
+  background-color: #363636c4 !important;
+}
 header .menuBurger div.content_basket,
 header .menuBurger div.content_library {
   justify-content: flex-end;
+  z-index: 50;
 }
 header .menuBurger .contenuBuger,
 header .menuBurger .content_basket,
 header .menuBurger .content_library {
   order: 1;
   /*si menu a droite*/
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
-  width: 100%;
   background-color: #363636;
 }
 header .menuBurger .contenuBuger ul,
@@ -111,11 +251,9 @@ header .menuBurger .content_basket ul,
 header .menuBurger .content_library ul {
   list-style: none;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 0.3125rem;
-  border-radius: 5px;
+  padding: 0.3125rem;
 }
 header .menuBurger .contenuBuger ul li,
 header .menuBurger .content_basket ul li,
@@ -123,11 +261,6 @@ header .menuBurger .content_library ul li {
   display: flex;
   align-items: center;
   height: 3.125rem;
-}
-header .menuBurger .contenuBuger ul.ui_nav,
-header .menuBurger .content_basket ul.ui_nav,
-header .menuBurger .content_library ul.ui_nav {
-  background-color: #cacaca4b;
 }
 header .menuBurger .contenuBuger ul.ui_nav a,
 header .menuBurger .content_basket ul.ui_nav a,
@@ -158,11 +291,6 @@ header .menuBurger .content_basket ul.ui_nav a:active,
 header .menuBurger .content_library ul.ui_nav a:active {
   border-bottom: solid #808080 3px;
 }
-header .menuBurger .contenuBuger ul.ui_search,
-header .menuBurger .content_basket ul.ui_search,
-header .menuBurger .content_library ul.ui_search {
-  background-color: #cacaca4b;
-}
 header .menuBurger .contenuBuger ul.ui_account li.btn_account,
 header .menuBurger .content_basket ul.ui_account li.btn_account,
 header .menuBurger .content_library ul.ui_account li.btn_account {
@@ -171,30 +299,35 @@ header .menuBurger .content_library ul.ui_account li.btn_account {
 header .menuBurger .contenuBuger ul.ui_account li.btn_account a,
 header .menuBurger .content_basket ul.ui_account li.btn_account a,
 header .menuBurger .content_library ul.ui_account li.btn_account a {
-  background-color: #cacaca4b;
-  box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.3125rem;
   padding-left: 0.3125rem;
   width: 4.375rem;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom: solid #cacaca00 3px;
+}
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a.current_page,
+header .menuBurger .content_basket ul.ui_account li.btn_account a.current_page,
+header .menuBurger .content_library ul.ui_account li.btn_account a.current_page {
+  pointer-events: none;
+  color: #ffffff;
+  border-bottom: solid #808080 3px;
+}
+header .menuBurger .contenuBuger ul.ui_account li.btn_account a:hover,
+header .menuBurger .content_basket ul.ui_account li.btn_account a:hover,
+header .menuBurger .content_library ul.ui_account li.btn_account a:hover {
+  border-bottom: solid #808080 3px;
 }
 header .menuBurger .contenuBuger ul.ui_account li.btn_account a:active,
 header .menuBurger .content_basket ul.ui_account li.btn_account a:active,
 header .menuBurger .content_library ul.ui_account li.btn_account a:active {
-  background-color: #e7e7e74b;
-  box-shadow: #eeeeee 0.3rem 0.3rem 0.3rem inset, #eeeeee -0.3rem -0.3rem 0.3rem inset;
+  border-bottom: solid #808080 3px;
 }
 header .menuBurger .contenuBuger ul.ui_account li.btn_account a.btn_disconnect,
 header .menuBurger .content_basket ul.ui_account li.btn_account a.btn_disconnect,
 header .menuBurger .content_library ul.ui_account li.btn_account a.btn_disconnect {
   padding-right: 0.3125rem;
-  border-radius: 0px;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
 }
 header .menuBurger .contenuBuger ul.ui_account li.btn_account a.btn_disconnect *,
 header .menuBurger .content_basket ul.ui_account li.btn_account a.btn_disconnect *,
@@ -210,7 +343,6 @@ header .menuBurger .contenuBuger ul.ui_account li.btn_account a.btn_connect,
 header .menuBurger .content_basket ul.ui_account li.btn_account a.btn_connect,
 header .menuBurger .content_library ul.ui_account li.btn_account a.btn_connect {
   width: 100%;
-  border-radius: 5px;
 }
 header .menuBurger .contenuBuger ul.ui_account li.btn_account a.btn_connect .icon_connect,
 header .menuBurger .content_basket ul.ui_account li.btn_account a.btn_connect .icon_connect,
@@ -229,35 +361,140 @@ header .menuBurger .content_library ul.ui_account li.btn_account a.btn_connect .
     display: none;
   }
   header .menuBurger .btn_basket,
-header .menuBurger .btn_library {
+header .menuBurger .btn_library, header .menuBurger .door {
     height: 3.125rem;
     margin: 0.3125rem;
-    box-shadow: none;
+    box-shadow: #00000000 0px 0px 0px;
     position: relative;
     border-radius: 5px;
   }
   header .menuBurger .btn_basket div.count,
-header .menuBurger .btn_library div.count {
+header .menuBurger .btn_library div.count, header .menuBurger .door div.count {
     top: 1.875rem;
-  }
-  header .menuBurger .container {
-    position: relative;
   }
   header .menuBurger .checkBurger:checked + .contenuBuger,
 header .menuBurger .check_basket:checked + .content_basket,
 header .menuBurger .check_library:checked + .content_library {
-    top: 3.4375rem;
-    display: flex;
-    width: min-content;
+    top: 8.4375rem;
+    left: 0;
+    width: 100%;
   }
   header .menuBurger .contenuBuger {
     display: flex;
-    justify-content: space-evenly;
   }
   header .menuBurger .content_basket,
 header .menuBurger .content_library {
     position: absolute;
   }
+}
+
+/*////////////// MODAL BOX PAYMENT //////////////*/
+.myModal {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #000000e6;
+  color: #f1f1f1;
+}
+.myModal .modalContent {
+  margin: auto;
+  border: #f1f1f12c solid 2px;
+  padding: 0.625rem;
+  width: 31.25rem;
+  background-color: #363636;
+}
+.myModal .modalContent ul {
+  display: flex;
+  overflow-x: auto;
+  padding: 0.625rem;
+  border: #f1f1f12c solid 2px;
+}
+.myModal .modal_thumbnail {
+  height: 6.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  padding: 0.1875rem;
+}
+.myModal .modal_thumbnail #imgPack {
+  border: #f1f1f12c solid 2px;
+  height: 80%;
+}
+.myModal .modal_thumbnail .basket_price_package {
+  font-weight: bolder;
+  height: 20%;
+}
+.myModal .caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0.9375rem;
+}
+.myModal .caption > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.myModal .caption span {
+  margin: 0.625rem;
+  width: 100%;
+}
+.myModal .caption #btn_buy_yes,
+.myModal .caption #btn_buy_non {
+  margin: 0.625rem;
+  padding: 0.3125rem;
+  width: 30%;
+  border: #f1f1f12c solid 1px;
+  border-radius: 5px;
+}
+.myModal .caption #btn_buy_yes.click_BBBB,
+.myModal .caption #btn_buy_non.click_BBBB {
+  box-shadow: #ffffffde 0rem 0rem 0.3125rem inset, #ffffffde 0rem 0rem 0.3125rem inset !important;
+}
+.myModal .caption #btn_buy_yes {
+  background-color: #0050b9;
+}
+.myModal .caption #btn_buy_non {
+  background-color: #940000;
+}
+.myModal .modalContent,
+.myModal .caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+.myModal .modalContent #price,
+.myModal .caption #price {
+  margin: 0.3125rem;
+}
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.myModal .closeModal {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.myModal .closeModal:hover,
+.myModal .closeModal:focus {
+  color: #bbb;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=header_multiBurger.css.map */

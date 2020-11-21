@@ -234,6 +234,11 @@
       justify-content: center;
       margin-top: rem(45);
 
+      .disabled{
+         pointer-events: none;
+         opacity: 0.5;
+      }
+
       .price,
       .add_to_basket,
       .play_medium {

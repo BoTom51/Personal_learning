@@ -195,6 +195,10 @@
   justify-content: center;
   margin-top: 2.8125rem;
 }
+.fiche .action_ui .disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
 .fiche .action_ui .price,
 .fiche .action_ui .add_to_basket,
 .fiche .action_ui .play_medium {

@@ -1,11 +1,19 @@
 @import "./libs/fonctions.scss";
 
+$thumbnail_height: rem(80);
+$header_bgc: #363636;
+$backet_counter_color: #ff0000;
+$underline_nav_btn_color: #808080;
+$current_page_link_color: #ffffff;
+$btnVoir_color: #0050b9;
+$btnSuppr_color: #940000;
+
 header {
    width: 100%;
    margin-bottom: rem(5);
    user-select: none;
    position: relative;
-   background-color: #363636;
+   background-color: $header_bgc;
    box-shadow: #00000071 0px 4px 5px;
 
    /////////////// BANNIERE / LOGO ///////////////
@@ -30,22 +38,157 @@ header {
          justify-content: end;
          margin-bottom: rem(5);
 
+         #openModal {
+            // margin: 0 auto rem(5);
+            margin: rem(5) auto;
+            padding: 0 rem(5);
+            border: #f1f1f165 solid 2px;
+            border-radius: 5px;
+            background-color: #00af00;
+            cursor: pointer;
+         }
+
+         .list_basket {
+            width: 100%; //--------------
+            justify-content: flex-end;
+
+            background-color: $header_bgc;
+         }
+
          .list_basket,
-         .list_lybrary {
-            margin: rem(5);
+         .list_library {
+            // margin: rem(5);
+            padding: rem(5);
+            display: flex;
 
             li {
+               position: relative;
                margin: 0px rem(5);
                display: flex;
                align-items: center;
-               height: rem(50);
+               // height: rem(50);
+               height: $thumbnail_height;
+
+               &.thumbnail {
+                  font-size: 12px;
+                  font-weight: bolder;
+                  border: #f1f1f12c solid 1px;
+                  cursor: pointer;
+
+                  .library_title_package {
+                     position: absolute;
+                     text-align: center;
+                     width: 100%;
+                     border-radius: 3px;
+                     background-color: $header_bgc;
+                     display: flex;
+                     justify-content: center;
+                     align-items: center;
+                     top: rem(-22);
+                     box-shadow: #ffffff rem(0) rem(0) rem(10);
+                  }
+
+                  .library_link {
+                     height: 100%;
+                  }
+               }
+
+               img {
+                  height: 100%;
+               }
+
+               .ui_thumbnail {
+                  position: absolute;
+                  display: flex;
+                  flex-wrap: wrap;
+                  align-content: space-between;
+                  height: $thumbnail_height + rem(45);
+                  width: 100%;
+                  opacity: 0;
+                  z-index: -10;
+                  cursor: pointer;
+
+                  &.ui_open {
+                     animation: ui_appear 1s forwards;
+                  }
+
+                  &.ui_close {
+                     animation: ui_desappear 1s forwards;
+                  }
+
+                  @keyframes ui_appear {
+                     from {
+                        z-index: -10;
+                        opacity: 0;
+                     }
+                     to {
+                        z-index: 100;
+                        opacity: 1;
+                     }
+                  }
+                  @keyframes ui_desappear {
+                     from {
+                        z-index: 100;
+                        opacity: 1;
+                     }
+                     to {
+                        z-index: -10;
+                        opacity: 0;
+                     }
+                  }
+
+                  .basket_title_package,
+                  .basket_price_package {
+                     text-align: center;
+                     width: 100%;
+                     border-radius: 3px;
+                     background-color: $header_bgc;
+                     box-shadow: #ffffff rem(0) rem(0) rem(10);
+                  }
+
+                  #btnVoir,
+                  #btnSuppr {
+                     display: flex;
+                     justify-content: center;
+                     align-items: center;
+                     padding: rem(3);
+
+                     border-radius: 50px;
+                     background-color: #888888a8;
+                     box-shadow: #000000be rem(0) rem(0) rem(5);
+                     transition: box-shadow 0.5s;
+
+                     img {
+                        width: rem(30);
+                     }
+                  }
+
+                  #btnVoir {
+                     margin-left: rem(2);
+                     margin-right: auto;
+                     background-color: $btnVoir_color;
+
+                     &:hover {
+                        box-shadow: #ffffff rem(0) rem(0) rem(10);
+                     }
+                  }
+                  #btnSuppr {
+                     margin-right: rem(2);
+                     margin-left: auto;
+                     background-color: $btnSuppr_color;
+
+                     &:hover {
+                        box-shadow: #ffffff rem(0) rem(0) rem(10);
+                     }
+                  }
+               }
             }
          }
       }
 
       .btnBurger,
       .btn_basket,
-      .btn_library {
+      .btn_library, .door {
          position: relative;
          order: 2; /*si menu a droite*/
          display: flex;
@@ -58,24 +201,30 @@ header {
          color: #ccccccd5;
          border: solid 1px #cccccc59;
          border-radius: 10px;
-         background-color: #363636;
+         background-color: $header_bgc;
          box-shadow: #00000071 0px 4px 5px;
+         transition: box-shadow 0.5s ease;
+         cursor: pointer;
 
          img {
+            height: rem(25);
             width: rem(22);
-            height: rem(22);
+            // height: rem(22);
          }
+      }
+
+      .clickBtn {
+         box-shadow: #ffffffde rem(0) rem(0) rem(5) inset, #ffffffde rem(0) rem(0) rem(5) inset !important;
       }
 
       .btn_basket .count {
          display: flex;
          align-items: center;
          justify-content: center;
-         // content: "5";
-         color: black;
+         color: #000000;
          font-size: 10px;
          position: absolute;
-         background-color: red;
+         background-color: $backet_counter_color;
          top: rem(35);
          right: rem(5);
          width: rem(15);
@@ -100,29 +249,33 @@ header {
       }
 
       /*////////////// CONTENU DU MENU //////////////*/
+      .content_basket {
+         flex-wrap: wrap; //------------------
+         background-color: #363636c4 !important;
+      }
+      
       div.content_basket,
       div.content_library {
          justify-content: flex-end;
+         z-index: 50;
       }
 
       .contenuBuger,
       .content_basket,
       .content_library {
          order: 1; /*si menu a droite*/
-         flex-wrap: wrap;
          align-items: center;
          justify-content: space-evenly;
-         width: 100%;
-         background-color: #363636;
+         background-color: $header_bgc;
 
          ul {
             list-style: none;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            margin: rem(5);
-            border-radius: 5px;
+            // margin: rem(5);
+            padding: rem(5); //------------
+            // border-radius: 5px;
 
             li {
                display: flex;
@@ -131,8 +284,6 @@ header {
             }
             /////////////// INTERFACE NAVIGATION ///////////////
             &.ui_nav {
-               background-color: #cacaca4b;
-
                a {
                   display: flex;
                   align-items: center;
@@ -145,21 +296,20 @@ header {
 
                   &.current_page {
                      pointer-events: none;
-                     color: #ffffff;
-                     border-bottom: solid #808080 3px;
+                     color: $current_page_link_color;
+                     border-bottom: solid $underline_nav_btn_color 3px;
                   }
 
                   &:hover {
-                     border-bottom: solid #808080 3px;
+                     border-bottom: solid $underline_nav_btn_color 3px;
                   }
                   &:active {
-                     border-bottom: solid #808080 3px;
+                     border-bottom: solid $underline_nav_btn_color 3px;
                   }
                }
             }
             /////////////// INTERFACE RECHERCHE ///////////////
             &.ui_search {
-               background-color: #cacaca4b;
             }
             /////////////// INTERFACE DE COMPTE ///////////////
             &.ui_account {
@@ -167,28 +317,30 @@ header {
                   align-items: initial;
 
                   a {
-                     background-color: #cacaca4b;
-                     box-shadow: #ffffff 0.3rem 0.3rem 0.3rem inset, #ffffff -0.3rem -0.3rem 0.3rem inset;
                      display: flex;
                      align-items: center;
                      justify-content: center;
                      padding: rem(5);
                      padding-left: rem(5);
                      width: rem(70);
-                     border-top-right-radius: 5px;
-                     border-bottom-right-radius: 5px;
+                     border-bottom: solid #cacaca00 3px;
+
+                     &.current_page {
+                        pointer-events: none;
+                        color: $current_page_link_color;
+                        border-bottom: solid $underline_nav_btn_color 3px;
+                     }
+
+                     &:hover {
+                        border-bottom: solid $underline_nav_btn_color 3px;
+                     }
 
                      &:active {
-                        background-color: #e7e7e74b;
-                        box-shadow: #eeeeee 0.3rem 0.3rem 0.3rem inset, #eeeeee -0.3rem -0.3rem 0.3rem inset;
-                        //pointer-events: none; //---------------------------------------------------
+                        border-bottom: solid $underline_nav_btn_color 3px;
                      }
+
                      &.btn_disconnect {
-                        // border-right: black solid 1px;
                         padding-right: rem(5);
-                        border-radius: 0px;
-                        border-top-left-radius: 5px;
-                        border-bottom-left-radius: 5px;
 
                         * {
                            height: 100%;
@@ -197,9 +349,10 @@ header {
                            width: rem(40);
                         }
                      }
+
                      &.btn_connect {
                         width: 100%;
-                        border-radius: 5px;
+
                         .icon_connect {
                            width: rem(40);
                         }
@@ -214,8 +367,7 @@ header {
    @media screen and (min-width: 768px) {
       .menuBurger {
          position: static;
-         // left: 0px;
-         background-color: #363636;
+         background-color: $header_bgc;
          flex-direction: row;
          justify-content: center;
          align-items: center;
@@ -223,12 +375,12 @@ header {
          .btnBurger {
             display: none;
          }
-
+         
          .btn_basket,
-         .btn_library {
+         .btn_library, .door {
             height: rem(50);
             margin: rem(5);
-            box-shadow: none;
+            box-shadow: #00000000 0px 0px 0px;
             position: relative;
             border-radius: 5px;
 
@@ -237,21 +389,18 @@ header {
             }
          }
 
-         .container {
-            position: relative;
-         }
-
          .checkBurger:checked + .contenuBuger,
          .check_basket:checked + .content_basket,
          .check_library:checked + .content_library {
-            top: rem(55);
-            display: flex;
-            width: min-content;
+            // top: rem(65);
+            // top: rem(90);
+            top: rem(135);
+            left: 0;
+            width: 100%;
          }
 
          .contenuBuger {
             display: flex;
-            justify-content: space-evenly;
          }
 
          .content_basket,
@@ -259,5 +408,129 @@ header {
             position: absolute;
          }
       }
+   }
+}
+
+/*////////////// MODAL BOX PAYMENT //////////////*/
+.myModal {
+   display: none; // flex
+   flex-direction: column;
+   align-items: center;
+   position: fixed;
+   z-index: 1000;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   overflow: auto;
+   background-color: #000000e6;
+   color: #f1f1f1;
+
+   .modalContent {
+      margin: auto;
+      border: #f1f1f12c solid 2px;
+      padding: rem(10);
+      width: rem(500);
+      background-color: $header_bgc;
+
+      ul {
+         display: flex;
+         overflow-x: auto;
+         padding: rem(10);
+         border: #f1f1f12c solid 2px;
+      }
+   }
+
+   .modal_thumbnail {
+      height: $thumbnail_height + rem(30);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-items: center;
+
+      padding: rem(3);
+
+      #imgPack {
+         border: #f1f1f12c solid 2px;
+         height: 80%;
+      }
+      .basket_price_package {
+         font-weight: bolder;
+         height: 20%;
+      }
+   }
+
+   .caption {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: rem(15);
+
+      & > * {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
+
+      span {
+         margin: rem(10);
+         width: 100%;
+      }
+
+      #btn_buy_yes,
+      #btn_buy_non {
+         margin: rem(10);
+         padding: rem(5);
+         width: 30%;
+         border: #f1f1f12c solid 1px;
+         border-radius: 5px;
+
+         &.click_BBBB {
+            box-shadow: #ffffffde rem(0) rem(0) rem(5) inset, #ffffffde rem(0) rem(0) rem(5) inset !important;
+         }
+      }
+
+      #btn_buy_yes {
+         background-color: $btnVoir_color;
+      }
+
+      #btn_buy_non {
+         background-color: $btnSuppr_color;
+      }
+   }
+
+   .modalContent,
+   .caption {
+      animation-name: zoom;
+      animation-duration: 0.6s;
+
+      #price {
+         margin: rem(5);
+      }
+   }
+
+   @keyframes zoom {
+      from {
+         transform: scale(0);
+      }
+      to {
+         transform: scale(1);
+      }
+   }
+
+   .closeModal {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+   }
+   .closeModal:hover,
+   .closeModal:focus {
+      color: #bbb;
+      // text-decoration: none;
+      cursor: pointer;
    }
 }

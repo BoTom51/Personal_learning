@@ -1,5 +1,8 @@
 @import "./libs/fonctions.scss";
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap");
+
+$alert_message_color: #c40000;
+$info_message_color: #3e72ff;
 
 * {
    box-sizing: border-box;
@@ -7,7 +10,7 @@
    padding: 0%;
 }
 html {
-   font-family: 'Roboto Slab', serif;
+   font-family: "Roboto Slab", serif;
 }
 body {
    display: flex;
@@ -15,7 +18,51 @@ body {
    align-items: center;
    background-color: #ececec;
    max-width: 1280px;
-	margin: auto;
-	
-	// FOND/PARALAXE
+   margin: auto;
+
+   // FOND/PARALAXE
+}
+///////// MESSAGE BOX /////////
+#message_bubble {
+   position: absolute;
+   top: 0;
+   right: 0%;
+   animation: message_appear 3s;
+
+   .message_content_text {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: rem(5);
+      border-radius: rem(5);
+
+      &.alert_message {
+         background-color: $alert_message_color;
+         border-color: $alert_message_color;
+      }
+
+      &.info_message {
+         background-color: $info_message_color;
+         border-color: $info_message_color;
+      }
+
+      &:after {
+         content: "";
+         position: absolute;
+         right: rem(-10);
+         height: 0;
+         width: 0;
+         border-top: 10px solid transparent;
+         border-bottom: 10px solid transparent;
+         border-left: 10px solid transparent;
+         border-left-color: inherit;
+      }
+   }
+
+   @keyframes message_appear {
+      0% {opacity: 0;}
+      50% {opacity: 1;}
+      100% {opacity: 0;}
+   }
 }

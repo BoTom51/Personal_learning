@@ -18,4 +18,49 @@ body {
   margin: auto;
 }
 
+#message_bubble {
+  position: absolute;
+  top: 0;
+  right: 0%;
+  animation: message_appear 3s;
+}
+#message_bubble .message_content_text {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3125rem;
+  border-radius: 0.3125rem;
+}
+#message_bubble .message_content_text.alert_message {
+  background-color: #c40000;
+  border-color: #c40000;
+}
+#message_bubble .message_content_text.info_message {
+  background-color: #3e72ff;
+  border-color: #3e72ff;
+}
+#message_bubble .message_content_text:after {
+  content: "";
+  position: absolute;
+  right: -0.625rem;
+  height: 0;
+  width: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-left-color: inherit;
+}
+@keyframes message_appear {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 /*# sourceMappingURL=document.css.map */
