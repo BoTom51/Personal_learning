@@ -1,10 +1,11 @@
 <?php
-require_once './includes/class/Autoloader.php';
-Autoloader::register(); //charge automatiquement tous les fichers de class a leur appel
-require_once './includes/session.php';
 require_once './config.php';
-require_once './includes/functions/functions_carrousel.php';
-if (session_status() === PHP_SESSION_NONE) session_start(); // Ouvre la session si pas deja ouverte
+require_once SERVEUR_ROOT . '/includes/class/Autoloader.php';
+Autoloader::register(); //charge automatiquement tous les fichers de class a leur appel
+require_once SERVEUR_ROOT . '/includes/session.php';
+require_once SERVEUR_ROOT . '/includes/functions/functions_carrousel.php';
+if (be_connect()) $connected = true;
+else $connected = false;
 // echo '<pre>'; var_dump($_SESSION); echo '</pre><<< SESSION >>>';//-----------------
 ?>
 <!DOCTYPE html>
@@ -15,6 +16,11 @@ if (session_status() === PHP_SESSION_NONE) session_start(); // Ouvre la session 
 <!-- //////////////////////////////////// BODY //////////////////////////////////// -->
 
 <body>
+<?php if($connected) : ?>
+	<script>
+		let id_user = <?= $_SESSION['Id'] ?>; //----------------> BEURK
+	</script>
+<?php endif ?>
 	<!-- //////////////////////////////////// HEADER //////////////////////////////////// -->
 	<?php require_once SERVEUR_ROOT . '/includes/header.php'; ?>
 
@@ -31,7 +37,7 @@ if (session_status() === PHP_SESSION_NONE) session_start(); // Ouvre la session 
 		}
 
 		//// recupération les elements a afficher en recommendations celon le nombre définie
-		$sql = "SELECT * FROM articles NATURAL JOIN categories NATURAL JOIN sub_categories NATURAL JOIN formations NATURAL JOIN niveaux NATURAL JOIN packages WHERE Id_sub_category = :sub LIMIT :limit";
+		$sql = "SELECT * FROM articles NATURAL JOIN categories NATURAL JOIN sub_categories NATURAL JOIN formations NATURAL JOIN niveaux WHERE Id_sub_category = :sub LIMIT :limit";
 		$prep_sql = $database->myPrepare($sql);
 		$prep_sql->bindValue('limit', HOMEPAGE_NUM_RECOM, PDO::PARAM_INT);
 		$prep_sql->bindValue('sub', 2, PDO::PARAM_INT);
@@ -88,36 +94,37 @@ if (session_status() === PHP_SESSION_NONE) session_start(); // Ouvre la session 
 
 
 		<!-- UNIQUEMENT SI CONNECTÉ -->
-		<?php if (be_connect()) : ?>
+		<?php if ($connected) : ?>
 			<h2>Recommandations</h2>
 
 			<list class="list list_mosaic">
 				<?php for ($i = 0; $i < count($res); $i++) :
 					// RECUP DES ID AVEC LA BONNE CORRESPONDANCE DE TABLE
 					$type = $id = '';
-					if (isset($finalResult[$i]['Id_article'])) {
+					if (isset($res[$i]['Id_article'])) {
 						$type = 'articles';
-						$id = $finalResult[$i]['Id_article'];
-					} elseif (isset($finalResult[$i]['Id_lesson'])) {
+						$id = $res[$i]['Id_article'];
+					} elseif (isset($res[$i]['Id_lesson'])) {
 						$type = 'lessons';
-						$id = $finalResult[$i]['Id_lesson'];
-					} elseif (isset($finalResult[$i]['Id_exercice'])) {
+						$id = $res[$i]['Id_lesson'];
+					} elseif (isset($res[$i]['Id_exercice'])) {
 						$type = 'exercices';
-						$id = $finalResult[$i]['Id_exercice'];
+						$id = $res[$i]['Id_exercice'];
 					}
 					// CONSTRUCTION HTML DE LA 'CARTE'
 				?>
 					<card class="card card_mosaic">
 						<a class="lien_recomm" href="<?= ROOT_URL . "/front/fiche.php?id=" . $id . "&type=" . $type ?>">
-							<img src="<?= ROOT_URL . "/assets/img/" . utf8_encode($finalResult[$i]['Picture']) . ".jpg" ?>" alt="<?= utf8_encode($finalResult[$i]['Title']); ?>">
+							<img src="<?= ROOT_URL . "/assets/img/" . utf8_encode($res[$i]['Picture']) . ".jpg" ?>" alt="<?= utf8_encode($res[$i]['Title']); ?>">
 							<info class="block_info">
 								<h3><?= utf8_encode($res[$i]['Title']); ?></h3>
-								<describ class="describ"><?= utf8_encode(substr($res[$i]['Content'], 0, 180)) . ' ...'; ?></describ>
+								<describe class="describe"><?= utf8_encode(substr($res[$i]['Describ'], 0, 180)) . ' ...'; ?></describe>
 								<strong class="category"><?= utf8_encode($res[$i]['Category_name']); ?></strong>
 								<strong class="sub_category"><?= utf8_encode($res[$i]['Sub_category_name']); ?></strong>
 								<strong class="formation"><?= utf8_encode($res[$i]['Formation_name']); ?></strong>
 								<strong class="niveau"><?= utf8_encode($res[$i]['Niveau_name']); ?></strong>
 								<strong class="article_date"><?= utf8_encode($res[$i]['Date']); ?></strong>
+
 								<?php if (isset($res[$i]['Price_package'])) : ?>
 									<?php if ($res[$i]['Price_package'] !== '0') : ?>
 										<strong class="product_price">PACKAGE : <?= utf8_encode($res[$i]['Price_package']); ?>&euro;</strong>
@@ -125,10 +132,12 @@ if (session_status() === PHP_SESSION_NONE) session_start(); // Ouvre la session 
 										<strong class="product_price"><?= utf8_encode($res[$i]['Price']); ?></strong>
 									<?php endif; ?>
 								<?php endif; ?>
+
 							</info>
 						</a>
 					</card>
 				<?php endfor; ?>
+
 			</list>
 
 		<?php endif ?>
